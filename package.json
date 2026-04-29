@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "seed:fetch": "tsx --env-file=.env.local scripts/fetch-off.ts",
+    "seed:wiki": "tsx --env-file=.env.local scripts/fetch-wiki.ts",
     "seed:push": "tsx --env-file=.env.local scripts/seed-supabase.ts",
     "db:apply": "tsx --env-file=.env.local scripts/apply-sql.ts"
   },

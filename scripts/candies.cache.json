@@ -2,7 +2,27 @@
   {
     "name": "Kinder Schokolade",
     "brand": "Ferrero",
-    "image_url": null,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/KinderSchokolade.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
+  },
+  {
+    "name": "Kinder Bueno",
+    "brand": "Ferrero",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kinder-Bueno-Split.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
+  },
+  {
+    "name": "Kinder Country",
+    "brand": "Ferrero",
+    "image_url": "https://upload.wikimedia.org/wikipedia/de/thumb/4/4b/Kinder_Country_Logo.jpg/600px-Kinder_Country_Logo.jpg",
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -12,157 +32,267 @@
   {
     "name": "Kinder Pingui",
     "brand": "Ferrero",
-    "image_url": "https://images.openfoodfacts.org/images/products/400/840/029/0423/front_en.197.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kinder_Pingui_ak.jpg?width=600",
     "kcal_100g": 450,
     "sugar_100g": 33.1,
     "fat_100g": 29.7,
     "ingredients_short": "Frische VOLLMILCH (24%), Halbbitterschokolade 21 % (Zucker, Kakao - masse, Kakaobutter",
-    "source_code": "4008400290423"
+    "source_code": null
+  },
+  {
+    "name": "Duplo",
+    "brand": "Ferrero",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Duplo-Schokoriegel.jpg/960px-Duplo-Schokoriegel.jpg",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Hanuta",
     "brand": "Ferrero",
-    "image_url": "https://images.openfoodfacts.org/images/products/800/050/027/2442/front_de.114.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hanuta_11-2015.jpg?width=600",
     "kcal_100g": 542,
     "sugar_100g": 42.7,
     "fat_100g": 31.9,
     "ingredients_short": "Zucker, pflanzliche Fette (Palm, Shea), _Weizenmehl_ (13",
-    "source_code": "8000500272442"
+    "source_code": null
+  },
+  {
+    "name": "Knoppers",
+    "brand": "Storck",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/KnoppersKokosRiegel.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Knoppers NussRiegel",
     "brand": "Storck",
-    "image_url": "https://images.openfoodfacts.org/images/products/401/440/092/9065/front_de.65.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/KnoppersKokosRiegel.jpg?width=600",
     "kcal_100g": 531,
     "sugar_100g": 38.8,
     "fat_100g": 31.6,
     "ingredients_short": "Zucker, Haselnüsse (14, 8%), pflanzliche Fette (Palm",
-    "source_code": "4014400929065"
+    "source_code": null
   },
   {
     "name": "Milka Alpenmilch",
     "brand": "Milka",
-    "image_url": "https://images.openfoodfacts.org/images/products/762/221/044/9283/front_en.605.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Milka_Alpine_Milk_Chocolate_bar_100g.jpg?width=600",
     "kcal_100g": 465,
     "sugar_100g": 32,
     "fat_100g": 17,
     "ingredients_short": "Céréale 50 % (Farine de blé 34, 8 %, farine de blé complet 15, 2 %)",
-    "source_code": "7622210449283"
+    "source_code": null
   },
   {
     "name": "Ritter Sport Voll-Nuss",
     "brand": "Ritter Sport",
-    "image_url": "https://images.openfoodfacts.org/images/products/400/041/767/0014/front_de.12.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ritter_Sport_-_english.png?width=600",
     "kcal_100g": 569,
     "sugar_100g": 43,
     "fat_100g": 38,
     "ingredients_short": "Zucker, HASELNÜSSE 25%, Kakaomasse, Kakaobutter",
-    "source_code": "4000417670014"
+    "source_code": null
+  },
+  {
+    "name": "Ritter Sport Knusperflakes",
+    "brand": "Ritter Sport",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ritter_Sport_-_english.png?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Snickers",
     "brand": "Mars",
-    "image_url": "https://images.openfoodfacts.org/images/products/500/015/946/1122/front_en.311.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Snickers-broken.JPG?width=600",
     "kcal_100g": 481,
     "sugar_100g": 51.8,
     "fat_100g": 22.5,
     "ingredients_short": "Zucker, Glukosesirup, Erdnüsse, Magermilchpulver",
-    "source_code": "5000159461122"
+    "source_code": null
   },
   {
     "name": "Mars",
     "brand": "Mars",
-    "image_url": "https://images.openfoodfacts.org/images/products/500/015/940/7236/front_en.125.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/2023_Baton_Mars_(2).jpg?width=600",
     "kcal_100g": 450,
     "sugar_100g": 61.6,
     "fat_100g": 16.8,
     "ingredients_short": "sugar, glucose syrup, cocoa butter, milk powder",
-    "source_code": "5000159407236"
+    "source_code": null
   },
   {
     "name": "Bounty",
     "brand": "Mars",
-    "image_url": "https://images.openfoodfacts.org/images/products/500/015/955/7771/front_en.125.400.jpg",
-    "kcal_100g": 487.719298245614,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bounty-Split.jpg?width=600",
+    "kcal_100g": 487.7,
     "sugar_100g": 48.0701754385965,
     "fat_100g": 25.9649122807018,
     "ingredients_short": "Zucker, Kokosraspel, Glukosesirup, Kakaobutter",
-    "source_code": "5000159557771"
+    "source_code": null
+  },
+  {
+    "name": "Twix",
+    "brand": "Mars",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Twix-broken.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
+  },
+  {
+    "name": "Lion",
+    "brand": "Nestlé",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lion-Bar-Split.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "KitKat",
     "brand": "Nestlé",
-    "image_url": "https://images.openfoodfacts.org/images/products/761/303/462/6844/front_fr.355.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kit-Kat-Split.jpg?width=600",
     "kcal_100g": 388,
     "sugar_100g": 22.4,
     "fat_100g": 4.8,
     "ingredients_short": "Blé complet 35, 0%, chocolat en poudre 22, 5% (sucre",
-    "source_code": "7613034626844"
+    "source_code": null
+  },
+  {
+    "name": "Yogurette",
+    "brand": "Ferrero",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Yogurette.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
+  },
+  {
+    "name": "Pickup Choco",
+    "brand": "Bahlsen",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Leibniz_Pick-Up_1.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Ferrero Küsschen",
     "brand": "Ferrero",
-    "image_url": "https://images.openfoodfacts.org/images/products/800/050/021/1335/front_fr.70.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ferrero_K%C3%BCsschen_ak_(ganz).jpg?width=600",
     "kcal_100g": 628,
     "sugar_100g": 38.7,
     "fat_100g": 47.3,
     "ingredients_short": "Chocolat noir 49% (sucre, pâte de cacao, beurre de cacao, émulsifiants : lécithines [SOJA]",
-    "source_code": "8000500211335"
+    "source_code": null
   },
   {
     "name": "Raffaello",
     "brand": "Ferrero",
-    "image_url": "https://images.openfoodfacts.org/images/products/800/050/002/3976/front_en.295.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/2023_Raffaello.jpg?width=600",
     "kcal_100g": 627,
     "sugar_100g": 33.6,
     "fat_100g": 48.3,
     "ingredients_short": "Изсушен кокос 25, 5%, растителни мазнини (палма, ший)",
-    "source_code": "8000500023976"
+    "source_code": null
+  },
+  {
+    "name": "Mon Chéri",
+    "brand": "Ferrero",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/MonCheri.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
+  },
+  {
+    "name": "Toffifee",
+    "brand": "Storck",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/2023_Toffifee_(2).jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Merci",
     "brand": "Storck",
-    "image_url": "https://images.openfoodfacts.org/images/products/401/440/092/5869/front_de.3.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Merci_-_Milk_Selection-6326.jpg?width=600",
     "kcal_100g": 565,
     "sugar_100g": 45.7,
     "fat_100g": 36.6,
     "ingredients_short": null,
-    "source_code": "4014400925869"
+    "source_code": null
+  },
+  {
+    "name": "Lindt Lindor",
+    "brand": "Lindt",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lindor_balls_(1).jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Haribo Goldbären",
     "brand": "Haribo",
-    "image_url": "https://images.openfoodfacts.org/images/products/869/121/602/0627/front_fr.22.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gummi_bears_in_a_row.jpg?width=600",
     "kcal_100g": 330,
     "sugar_100g": 47.3,
     "fat_100g": 0.1,
     "ingredients_short": "sirop de glucose, sucre, gélatine halal bovine, dextrose",
-    "source_code": "8691216020627"
+    "source_code": null
   },
   {
     "name": "Haribo Color-Rado",
     "brand": "Haribo",
-    "image_url": "https://images.openfoodfacts.org/images/products/400/168/601/1249/front_de.3.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/German_sweets_and_liquorice_confectionery.jpg?width=600",
     "kcal_100g": 358,
     "sugar_100g": 55,
     "fat_100g": 2.2,
     "ingredients_short": "Glukosesirup, Zucker, brauner Zuckersirup, Weizenmehl",
-    "source_code": "4001686011249"
+    "source_code": null
   },
   {
     "name": "Haribo Pico-Balla",
     "brand": "Haribo",
-    "image_url": "https://images.openfoodfacts.org/images/products/400/168/612/0132/front_de.50.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Haribo_Pico-Balla-1305.jpg?width=600",
     "kcal_100g": 381,
     "sugar_100g": 61,
     "fat_100g": 4.9,
     "ingredients_short": "Zucker, Glukosesirup, Weizenmehl, Weizenstärke",
-    "source_code": "4001686120132"
+    "source_code": null
   },
   {
     "name": "Haribo Tropi-Frutti",
     "brand": "Haribo",
-    "image_url": null,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Haribo_Tropifrutti-7420.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
+  },
+  {
+    "name": "Maoam",
+    "brand": "Haribo",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vyrazka_Haribo_Maoam.jpg?width=600",
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -172,57 +302,147 @@
   {
     "name": "Mamba",
     "brand": "Storck",
-    "image_url": "https://images.openfoodfacts.org/images/products/401/440/092/6309/front_de.3.400.jpg",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Storck_Mamba_dispenser%2C_Zylinderhaus.JPG/960px-Storck_Mamba_dispenser%2C_Zylinderhaus.JPG",
     "kcal_100g": 395,
     "sugar_100g": 61.9,
     "fat_100g": 5.9,
     "ingredients_short": "Kaubonbons mit Cola-Fruchtgeschmack, Zucker, Glukosesirup, Palmfett",
-    "source_code": "4014400926309"
+    "source_code": null
+  },
+  {
+    "name": "Nimm2",
+    "brand": "Storck",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nimm2_candy.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
+  },
+  {
+    "name": "Nimm2 Lachgummi",
+    "brand": "Storck",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nimm2_candy.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Nimm2 Soft",
     "brand": "Storck",
-    "image_url": "https://images.openfoodfacts.org/images/products/401/440/091/7789/front_en.23.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nimm2_candy.jpg?width=600",
     "kcal_100g": 374,
     "sugar_100g": 58.8,
     "fat_100g": 3.4,
     "ingredients_short": "Zucker, Glukosesirup, Glukose-Fruktose-Sirup, Feuchthaltemittel Sorbitsirup",
-    "source_code": "4014400917789"
+    "source_code": null
+  },
+  {
+    "name": "Werther's Echte",
+    "brand": "Storck",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An_Open_Bag_of_Werther's_Original.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
+  },
+  {
+    "name": "Em-eukal",
+    "brand": "Em-eukal",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hustenbonbons_05.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
+  },
+  {
+    "name": "Ricola",
+    "brand": "Ricola",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bonbons_Ricola_Citron_M%C3%A9lisse_-_1.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
+  },
+  {
+    "name": "Haribo Lakritz-Schnecken",
+    "brand": "Haribo",
+    "image_url": null,
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
+  },
+  {
+    "name": "Katjes Salzige Heringe",
+    "brand": "Katjes",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Katjes_Salzige_Heringe-6295.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Katjes Yoghurt-Gums",
     "brand": "Katjes",
-    "image_url": "https://images.openfoodfacts.org/images/products/403/740/034/5864/front_de.14.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Katjes_Joghurt-Gums_(0877).jpg?width=600",
     "kcal_100g": 330,
     "sugar_100g": 53,
     "fat_100g": 0.2,
     "ingredients_short": "Zucker, Glukosesirup, Maltodextrin, 6% Magermilchjoghurtpulver",
-    "source_code": "4037400345864"
+    "source_code": null
+  },
+  {
+    "name": "Milky Way",
+    "brand": "Mars",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Milky_Way_Opened.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Smarties",
     "brand": "Nestlé",
-    "image_url": "https://images.openfoodfacts.org/images/products/000/004/239/5034/front_fr.88.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Smarties-UK-Candies.jpg?width=600",
     "kcal_100g": 470,
     "sugar_100g": 59.8,
     "fat_100g": 18.7,
     "ingredients_short": "Sucre, LAIT écrémé en poudre, pâte de cacao¹, beurre de cacao¹",
-    "source_code": "42395034"
+    "source_code": null
+  },
+  {
+    "name": "M&Ms",
+    "brand": "Mars",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Plain-M%26Ms-Pile.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "After Eight",
     "brand": "Nestlé",
-    "image_url": "https://images.openfoodfacts.org/images/products/500/042/617/1518/front_en.161.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aftereightchocolatethins.jpg?width=600",
     "kcal_100g": 426,
     "sugar_100g": 66.2,
     "fat_100g": 13.3,
     "ingredients_short": "Sucre, pâte de cacao, sirop de glucose, matières grasses végétales (palme",
-    "source_code": "5000426171518"
+    "source_code": null
   },
   {
     "name": "Mozartkugel",
     "brand": "Reber",
-    "image_url": null,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Original_Salzburger_Mozartkugel_F%C3%BCrst_2009.jpg?width=600",
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -232,61 +452,121 @@
   {
     "name": "Lindt Goldhase",
     "brand": "Lindt",
-    "image_url": "https://images.openfoodfacts.org/images/products/761/040/007/7736/front_de.5.400.jpg",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Lindt-Goldhase_31._M%C3%A4rz_2020_%286%29.JPG/960px-Lindt-Goldhase_31._M%C3%A4rz_2020_%286%29.JPG",
     "kcal_100g": 575,
     "sugar_100g": 50,
     "fat_100g": 37,
     "ingredients_short": null,
-    "source_code": "7610400077736"
+    "source_code": null
   },
   {
     "name": "Kinder Schoko-Bons",
     "brand": "Ferrero",
-    "image_url": "https://images.openfoodfacts.org/images/products/800/050/024/2612/front_en.84.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kinder_Schokobon.jpg?width=600",
     "kcal_100g": 576,
     "sugar_100g": 52.2,
     "fat_100g": 36.6,
     "ingredients_short": "Chocolat supérieur au LAIT 50% (sucre, LAIT en poudre, beurre de cacao, pâte de cacao",
-    "source_code": "8000500242612"
+    "source_code": null
+  },
+  {
+    "name": "Kinder Überraschungs-Ei",
+    "brand": "Ferrero",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kinder_Surprise_Egg.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
+  },
+  {
+    "name": "Lakritz-Konfekt",
+    "brand": "Haribo",
+    "image_url": null,
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
+  },
+  {
+    "name": "Ahoj-Brause Brausepulver",
+    "brand": "Ahoj-Brause",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ahoj-Brause_Waldmeister.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
+  },
+  {
+    "name": "Center Shock",
+    "brand": "Center Shock",
+    "image_url": null,
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Ahoj-Brause",
     "brand": "Ahoj-Brause",
-    "image_url": "https://images.openfoodfacts.org/images/products/000/004/033/5100/front_de.14.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ahoj-Brause_Waldmeister.jpg?width=600",
     "kcal_100g": 378,
     "sugar_100g": 70,
     "fat_100g": 1.6,
     "ingredients_short": "Zucker, Maltodextrin, Säuerungsmittel: Weinsäure (L+) und Citronensäure, Säureregulator: Natriumhydrogencarbonat",
-    "source_code": "40335100"
+    "source_code": null
+  },
+  {
+    "name": "PEZ",
+    "brand": "PEZ",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PEZ_Candy_Pieces.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
+  },
+  {
+    "name": "Leibniz Butterkeks",
+    "brand": "Bahlsen",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Butterkeks.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Prinzenrolle",
     "brand": "DeBeukelaer",
-    "image_url": "https://images.openfoodfacts.org/images/products/400/151/811/5541/front_de.78.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Prinzenrolle_Keks.JPG?width=600",
     "kcal_100g": 457,
     "sugar_100g": 30,
     "fat_100g": 18,
     "ingredients_short": "Weizenmehl, Zucker, pflanzliche Fette (Palm, Palmkern",
-    "source_code": "4001518115541"
+    "source_code": null
   },
   {
     "name": "Hobbits",
     "brand": "Bahlsen",
-    "image_url": "https://images.openfoodfacts.org/images/products/401/710/029/8905/front_de.48.400.jpg",
+    "image_url": null,
     "kcal_100g": 471,
     "sugar_100g": 25,
     "fat_100g": 20,
     "ingredients_short": "HAFERFLOCKEN (31 %), WEIZENVOLLKORNMEHL (30 %), Zucker, Palmöl",
-    "source_code": "4017100298905"
+    "source_code": null
   },
   {
     "name": "Choco Crossies",
     "brand": "Nestlé",
-    "image_url": "https://images.openfoodfacts.org/images/products/761/303/549/9652/front_en.120.400.jpg",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Choco_crossies2.JPG?width=600",
     "kcal_100g": 509,
     "sugar_100g": 40.8,
     "fat_100g": 26.2,
     "ingredients_short": "Zucker, Cornflakes (Mais, Zucker, Salz",
-    "source_code": "7613035499652"
+    "source_code": null
   }
 ]

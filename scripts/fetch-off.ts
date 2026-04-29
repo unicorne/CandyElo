@@ -1,9 +1,10 @@
-// Fetch Open Food Facts data for the seed list and cache it to JSON.
-// Run: pnpm seed:fetch
+// Fetch nutrition + ingredients from Open Food Facts.
+// IMPORTANT: This script no longer overwrites `image_url` — that comes from
+// `seed:wiki`. We only fill kcal/sugar/fat/ingredients here, and only if the
+// match is high-confidence (all `nameMust` tokens present in the OFF product
+// name). Better to leave nutrition null than show wrong values.
 //
-// We do a simple text search per candy, filter results that mention the brand,
-// and pick the first hit with a kcal_100g value. Misses are reported and
-// stored as `null` so we can re-run the script later with hand-tuned queries.
+// Run: pnpm seed:fetch  (after pnpm seed:wiki)
 
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -17,9 +18,8 @@ type OffProduct = {
   product_name?: string;
   product_name_de?: string;
   generic_name?: string;
+  generic_name_de?: string;
   brands?: string;
-  image_front_url?: string;
-  image_url?: string;
   ingredients_text_de?: string;
   ingredients_text?: string;
   nutriments?: Record<string, number | string | undefined>;
@@ -42,6 +42,15 @@ function num(v: unknown): number | null {
   return Number.isFinite(n) ? n : null;
 }
 
+function normalize(s: string | undefined): string {
+  return (s || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
 function shortIngredients(p: OffProduct): string | null {
   const raw = p.ingredients_text_de || p.ingredients_text || "";
   if (!raw) return null;
@@ -55,52 +64,33 @@ function shortIngredients(p: OffProduct): string | null {
   return parts.join(", ");
 }
 
-function normalize(s: string | undefined): string {
-  return (s || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "")
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim();
+function productName(p: OffProduct): string {
+  return normalize(
+    p.product_name_de || p.product_name || p.generic_name_de || p.generic_name,
+  );
+}
+
+function isHighConfidenceMatch(seed: SeedCandy, p: OffProduct): boolean {
+  const kcal = num(p.nutriments?.["energy-kcal_100g"]);
+  if (kcal == null || kcal < 150 || kcal > 700) return false;
+  const brands = normalize(p.brands);
+  const brandKey = normalize(seed.brand);
+  if (!brands.includes(brandKey) && !brandKey.includes(brands)) return false;
+  const name = productName(p);
+  const must = seed.nameMust.map(normalize);
+  // ALL nameMust tokens must appear (allow OR-groups within a single token via
+  // alternative spellings — the seed already lists those as separate strings).
+  return must.every((token) => name.includes(token));
 }
 
 function pick(seed: SeedCandy, products: OffProduct[]): OffProduct | null {
-  const brandKey = normalize(seed.brand);
-  const nameKey = normalize(seed.name);
-  const nameTokens = nameKey.split(" ").filter((t) => t.length > 2);
-
-  const score = (p: OffProduct): number => {
-    const brands = normalize(p.brands);
-    const productName = normalize(
-      p.product_name_de || p.product_name || p.generic_name,
-    );
-    const kcal = num(p.nutriments?.["energy-kcal_100g"]);
-    if (kcal == null || kcal < 150 || kcal > 700) return -1; // candy band
-    let s = 0;
-    if (brands && (brands.includes(brandKey) || brandKey.includes(brands))) s += 4;
-    const matchedTokens = nameTokens.filter((t) => productName.includes(t));
-    s += matchedTokens.length * 2;
-    if (matchedTokens.length === 0) return -1; // require at least one name token
-    return s;
-  };
-
-  let best: { p: OffProduct; s: number } | null = null;
   for (const p of products) {
-    const s = score(p);
-    if (s < 0) continue;
-    if (!best || s > best.s) best = { p, s };
+    if (isHighConfidenceMatch(seed, p)) return p;
   }
-  return best?.p ?? null;
+  return null;
 }
 
-// For barcode lookups we trust the barcode but still sanity-check the kcal range.
-function pickByBarcode(p: OffProduct): OffProduct | null {
-  const kcal = num(p.nutriments?.["energy-kcal_100g"]);
-  if (kcal == null || kcal < 150 || kcal > 700) return null;
-  return p;
-}
-
-async function fetchWithRetry(url: string, attempts = 5): Promise<Response | null> {
+async function fetchWithRetry(url: string, attempts = 3): Promise<Response | null> {
   let delay = 1500;
   for (let i = 0; i < attempts; i++) {
     try {
@@ -126,11 +116,9 @@ async function searchOff(seed: SeedCandy): Promise<OffProduct[]> {
     const res = await fetchWithRetry(url);
     if (res?.ok) {
       const json = (await res.json()) as { product?: OffProduct; status?: number };
-      // status === 0 means "product not found"
       if (json.product && json.status !== 0) return [json.product];
     }
   }
-  // Try the v2 search API first (cleaner and less rate-limited).
   const v2 = new URL("https://world.openfoodfacts.org/api/v2/search");
   v2.searchParams.set("search_terms", seed.query);
   v2.searchParams.set("page_size", "12");
@@ -141,116 +129,92 @@ async function searchOff(seed: SeedCandy): Promise<OffProduct[]> {
       "product_name",
       "product_name_de",
       "generic_name",
+      "generic_name_de",
       "brands",
-      "image_front_url",
-      "image_url",
       "ingredients_text_de",
       "ingredients_text",
       "nutriments",
     ].join(","),
   );
-  const v2res = await fetchWithRetry(v2.toString());
-  if (v2res?.ok) {
-    const json = (await v2res.json()) as { products?: OffProduct[] };
-    if (json.products && json.products.length > 0) return json.products;
-  }
-
-  // Fallback: legacy CGI search
-  const cgi = new URL("https://world.openfoodfacts.org/cgi/search.pl");
-  cgi.searchParams.set("search_terms", seed.query);
-  cgi.searchParams.set("search_simple", "1");
-  cgi.searchParams.set("action", "process");
-  cgi.searchParams.set("json", "1");
-  cgi.searchParams.set("page_size", "12");
-  cgi.searchParams.set(
-    "fields",
-    [
-      "code",
-      "product_name",
-      "product_name_de",
-      "generic_name",
-      "brands",
-      "image_front_url",
-      "image_url",
-      "ingredients_text_de",
-      "ingredients_text",
-      "nutriments",
-    ].join(","),
-  );
-  const cgiRes = await fetchWithRetry(cgi.toString());
-  if (!cgiRes?.ok) {
-    console.warn(`  ! OFF ${cgiRes?.status ?? "fail"} for ${seed.name}`);
-    return [];
-  }
-  const json = (await cgiRes.json()) as { products?: OffProduct[] };
+  const res = await fetchWithRetry(v2.toString());
+  if (!res?.ok) return [];
+  const json = (await res.json()) as { products?: OffProduct[] };
   return json.products ?? [];
 }
 
-function toCached(seed: SeedCandy, p: OffProduct | null): CachedCandy {
+function applyNutrition(
+  seed: SeedCandy,
+  cached: CachedCandy,
+  p: OffProduct,
+): CachedCandy {
   return {
-    name: seed.name,
-    brand: seed.brand,
-    image_url: p ? p.image_front_url || p.image_url || null : null,
-    kcal_100g: p ? num(p.nutriments?.["energy-kcal_100g"]) : null,
-    sugar_100g: p ? num(p.nutriments?.["sugars_100g"]) : null,
-    fat_100g: p ? num(p.nutriments?.["fat_100g"]) : null,
-    ingredients_short: p ? shortIngredients(p) : null,
-    source_code: p?.code ?? null,
+    ...cached,
+    kcal_100g: num(p.nutriments?.["energy-kcal_100g"]),
+    sugar_100g: num(p.nutriments?.["sugars_100g"]),
+    fat_100g: num(p.nutriments?.["fat_100g"]),
+    ingredients_short: shortIngredients(p),
+    source_code: p.code ?? cached.source_code,
   };
 }
 
 async function main() {
-  let existing: Record<string, CachedCandy> = {};
+  let arr: CachedCandy[] = [];
   try {
     const raw = await fs.readFile(CACHE_PATH, "utf8");
-    const arr = JSON.parse(raw) as CachedCandy[];
-    // Drop entries that look bogus (sub-150 kcal — candy isn't fruit) so we retry them.
-    const cleaned = arr.filter(
-      (c) => !c.kcal_100g || (c.kcal_100g >= 150 && c.kcal_100g <= 700),
-    );
-    existing = Object.fromEntries(cleaned.map((c) => [c.name, c]));
+    arr = JSON.parse(raw) as CachedCandy[];
   } catch {
-    // first run
+    arr = [];
   }
+  const byName = new Map(arr.map((c) => [c.name, c]));
 
-  const out: CachedCandy[] = [];
   let hits = 0;
+  let kept = 0;
   let misses = 0;
 
   for (const seed of CANDY_LIST) {
-    const cached = existing[seed.name];
-    if (cached && cached.image_url && cached.kcal_100g != null) {
-      out.push(cached);
-      hits++;
+    const cached = byName.get(seed.name) ?? {
+      name: seed.name,
+      brand: seed.brand,
+      image_url: null,
+      kcal_100g: null,
+      sugar_100g: null,
+      fat_100g: null,
+      ingredients_short: null,
+      source_code: null,
+    };
+    if (
+      cached.kcal_100g != null &&
+      cached.kcal_100g >= 150 &&
+      cached.kcal_100g <= 700
+    ) {
+      kept++;
+      byName.set(seed.name, cached);
       continue;
     }
-    process.stdout.write(`fetching: ${seed.name.padEnd(34)} `);
+    process.stdout.write(`off: ${seed.name.padEnd(34)} `);
     let products: OffProduct[] = [];
     try {
       products = await searchOff(seed);
-    } catch (err) {
-      console.warn(`error: ${(err as Error).message}`);
+    } catch {
+      products = [];
     }
-    let picked: OffProduct | null = null;
-    if (seed.barcode && products.length === 1) {
-      picked = pickByBarcode(products[0]);
-    } else {
-      picked = pick(seed, products);
-    }
-    const row = toCached(seed, picked);
-    out.push(row);
-    if (picked && row.kcal_100g != null) {
-      console.log(`✓ ${row.kcal_100g}kcal`);
+    const picked = pick(seed, products);
+    if (picked) {
+      const updated = applyNutrition(seed, cached, picked);
+      byName.set(seed.name, updated);
+      console.log(`✓ ${Math.round(num(picked.nutriments?.["energy-kcal_100g"]) ?? 0)}kcal`);
       hits++;
     } else {
-      console.log("✗ no match");
+      byName.set(seed.name, cached);
+      console.log("✗");
       misses++;
     }
-    await new Promise((r) => setTimeout(r, 1200));
+    await new Promise((r) => setTimeout(r, 800));
   }
 
+  const out = CANDY_LIST.map((s) => byName.get(s.name)!).filter(Boolean);
   await fs.writeFile(CACHE_PATH, JSON.stringify(out, null, 2) + "\n");
-  console.log(`\nDone. ${hits} hits, ${misses} misses → ${CACHE_PATH}`);
+  console.log(`\n${hits} new, ${kept} kept, ${misses} no nutrition → ${CACHE_PATH}`);
 }
 
 main().catch((e) => {

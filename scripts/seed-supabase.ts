@@ -47,24 +47,34 @@ async function main() {
   let inserted = 0;
   let updated = 0;
   for (const c of candies) {
-    const payload = {
-      name: c.name,
-      brand: c.brand,
-      image_url: c.image_url,
-      kcal_100g: c.kcal_100g,
-      sugar_100g: c.sugar_100g,
-      fat_100g: c.fat_100g,
-      ingredients_short: c.ingredients_short,
-    };
     const id = byName.get(c.name);
     if (id) {
-      const { error } = await sb.from("candies").update(payload).eq("id", id);
+      // For updates: only overwrite a field when we have a non-null new value.
+      // This way images can refresh without nulling out nutrition we collected
+      // earlier (or vice versa).
+      const update: Record<string, unknown> = { brand: c.brand };
+      if (c.image_url != null) update.image_url = c.image_url;
+      if (c.kcal_100g != null) update.kcal_100g = c.kcal_100g;
+      if (c.sugar_100g != null) update.sugar_100g = c.sugar_100g;
+      if (c.fat_100g != null) update.fat_100g = c.fat_100g;
+      if (c.ingredients_short != null)
+        update.ingredients_short = c.ingredients_short;
+      const { error } = await sb.from("candies").update(update).eq("id", id);
       if (error) {
         console.error(`update ${c.name} failed:`, error.message);
         continue;
       }
       updated++;
     } else {
+      const payload = {
+        name: c.name,
+        brand: c.brand,
+        image_url: c.image_url,
+        kcal_100g: c.kcal_100g,
+        sugar_100g: c.sugar_100g,
+        fat_100g: c.fat_100g,
+        ingredients_short: c.ingredients_short,
+      };
       const { error } = await sb.from("candies").insert(payload);
       if (error) {
         console.error(`insert ${c.name} failed:`, error.message);

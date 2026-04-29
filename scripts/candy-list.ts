@@ -1,82 +1,88 @@
-// Hand-curated seed list. `query` is what we send to Open Food Facts;
-// `brand` filters results so we don't pick up the wrong product.
-// `barcode` is an optional fallback when a search keyword is too generic
-// (or, in our case, when the OFF search API is rate-limited / down).
+// Hand-curated seed list.
+// - `query`     → OFF text search
+// - `brand`     → required brand match for OFF
+// - `barcode`   → preferred over search (when set, picked by EAN)
+// - `wikiTitle` → Wikipedia DE article title (used for canonical image)
+// - `nameMust`  → tokens that MUST appear in OFF product_name to accept (avoids
+//                 the "Snickers Hi-Protein" / "Twix Crisp" / wrong-product trap)
 
 export type SeedCandy = {
   name: string;
   brand: string;
   query: string;
   barcode?: string;
+  wikiTitle?: string;
+  nameMust: string[]; // case-insensitive substrings (for OFF nutrition match)
+  imageOverride?: string; // hand-curated Wikimedia Commons URL
 };
 
 export const CANDY_LIST: SeedCandy[] = [
   // Schoko-Riegel / Tafeln
-  { name: "Kinder Schokolade", brand: "Ferrero", query: "Kinder Schokolade", barcode: "8000500037560" },
-  { name: "Kinder Bueno", brand: "Ferrero", query: "Kinder Bueno", barcode: "8000500137505" },
-  { name: "Kinder Country", brand: "Ferrero", query: "Kinder Country", barcode: "4008400310145" },
-  { name: "Kinder Pingui", brand: "Ferrero", query: "Kinder Pingui" },
-  { name: "Duplo", brand: "Ferrero", query: "Duplo Ferrero", barcode: "4008400301129" },
-  { name: "Hanuta", brand: "Ferrero", query: "Hanuta" },
-  { name: "Knoppers", brand: "Storck", query: "Knoppers", barcode: "4014400900330" },
-  { name: "Knoppers NussRiegel", brand: "Storck", query: "Knoppers NussRiegel" },
-  { name: "Milka Alpenmilch", brand: "Milka", query: "Milka Alpenmilch", barcode: "7622210449283" },
-  { name: "Ritter Sport Voll-Nuss", brand: "Ritter Sport", query: "Ritter Sport Voll-Nuss" },
-  { name: "Ritter Sport Knusperflakes", brand: "Ritter Sport", query: "Ritter Sport Knusperflakes", barcode: "4000417025111" },
-  { name: "Snickers", brand: "Mars", query: "Snickers", barcode: "5000159461122" },
-  { name: "Mars", brand: "Mars", query: "Mars Riegel", barcode: "5000159407236" },
-  { name: "Bounty", brand: "Mars", query: "Bounty Riegel" },
-  { name: "Twix", brand: "Mars", query: "Twix", barcode: "5000159486187" },
-  { name: "Lion", brand: "Nestlé", query: "Lion Riegel", barcode: "7613036033800" },
-  { name: "KitKat", brand: "Nestlé", query: "KitKat", barcode: "7613034626844" },
-  { name: "Yogurette", brand: "Ferrero", query: "Yogurette", barcode: "4008400290492" },
-  { name: "Pickup Choco", brand: "Bahlsen", query: "Pick Up Choco Bahlsen", barcode: "4017100007187" },
+  { name: "Kinder Schokolade", brand: "Ferrero", query: "Kinder Schokolade", wikiTitle: "Kinder_Schokolade", nameMust: ["kinder", "schokolade"] },
+  { name: "Kinder Bueno", brand: "Ferrero", query: "Kinder Bueno", wikiTitle: "Kinder_Bueno", nameMust: ["bueno"] },
+  { name: "Kinder Country", brand: "Ferrero", query: "Kinder Country", wikiTitle: "Kinder_Country", nameMust: ["country"] },
+  { name: "Kinder Pingui", brand: "Ferrero", query: "Kinder Pingui", wikiTitle: "Kinder_Pingui", nameMust: ["pingui"] },
+  { name: "Duplo", brand: "Ferrero", query: "Duplo Ferrero", wikiTitle: "Duplo_(Süßware)", nameMust: ["duplo"] },
+  { name: "Hanuta", brand: "Ferrero", query: "Hanuta", wikiTitle: "Hanuta", nameMust: ["hanuta"] },
+  { name: "Knoppers", brand: "Storck", query: "Knoppers", wikiTitle: "Knoppers", nameMust: ["knoppers"] },
+  { name: "Knoppers NussRiegel", brand: "Storck", query: "Knoppers NussRiegel", wikiTitle: "Knoppers", nameMust: ["knoppers", "riegel"] },
+  { name: "Milka Alpenmilch", brand: "Milka", query: "Milka Alpenmilch", barcode: "7622210449283", wikiTitle: "Milka_(Marke)", nameMust: ["milka", "alpenmilch"] },
+  { name: "Ritter Sport Voll-Nuss", brand: "Ritter Sport", query: "Ritter Sport Voll-Nuss", wikiTitle: "Ritter_Sport", nameMust: ["ritter", "voll-nuss"] },
+  { name: "Ritter Sport Knusperflakes", brand: "Ritter Sport", query: "Ritter Sport Knusperflakes", wikiTitle: "Ritter_Sport", nameMust: ["ritter", "knusper"] },
+  { name: "Snickers", brand: "Mars", query: "Snickers", barcode: "5000159461122", wikiTitle: "Snickers", nameMust: ["snickers"] },
+  { name: "Mars", brand: "Mars", query: "Mars Riegel", wikiTitle: "Mars_(Schokoriegel)", nameMust: ["mars"] },
+  { name: "Bounty", brand: "Mars", query: "Bounty Riegel", wikiTitle: "Bounty_(Schokoriegel)", nameMust: ["bounty"] },
+  { name: "Twix", brand: "Mars", query: "Twix", wikiTitle: "Twix", nameMust: ["twix"] },
+  { name: "Lion", brand: "Nestlé", query: "Lion Riegel", wikiTitle: "Lion_(Schokoriegel)", nameMust: ["lion"], imageOverride: "https://commons.wikimedia.org/wiki/Special:FilePath/Lion-Bar-Split.jpg?width=600" },
+  { name: "KitKat", brand: "Nestlé", query: "KitKat", wikiTitle: "KitKat", nameMust: ["kitkat", "kit kat"] },
+  { name: "Yogurette", brand: "Ferrero", query: "Yogurette", wikiTitle: "Yogurette", nameMust: ["yogurette"] },
+  { name: "Pickup Choco", brand: "Bahlsen", query: "Pick Up Choco Bahlsen", wikiTitle: "Pick_Up!", nameMust: ["pick", "up"], imageOverride: "https://commons.wikimedia.org/wiki/Special:FilePath/Leibniz_Pick-Up_1.jpg?width=600" },
 
   // Pralinen / Kugeln
-  { name: "Ferrero Küsschen", brand: "Ferrero", query: "Ferrero Küsschen" },
-  { name: "Raffaello", brand: "Ferrero", query: "Raffaello" },
-  { name: "Mon Chéri", brand: "Ferrero", query: "Mon Chéri", barcode: "4008400362212" },
-  { name: "Toffifee", brand: "Storck", query: "Toffifee", barcode: "4014400121957" },
-  { name: "Merci", brand: "Storck", query: "Merci Schokolade" },
-  { name: "Lindt Lindor", brand: "Lindt", query: "Lindt Lindor", barcode: "8003340062518" },
+  { name: "Ferrero Küsschen", brand: "Ferrero", query: "Ferrero Küsschen", wikiTitle: "Ferrero_Küsschen", nameMust: ["küsschen", "kuesschen", "kuss"] },
+  { name: "Raffaello", brand: "Ferrero", query: "Raffaello", wikiTitle: "Raffaello_(Süßware)", nameMust: ["raffaello"] },
+  { name: "Mon Chéri", brand: "Ferrero", query: "Mon Chéri", wikiTitle: "Mon_Chéri", nameMust: ["mon", "cheri", "chéri"] },
+  { name: "Toffifee", brand: "Storck", query: "Toffifee", wikiTitle: "Toffifee", nameMust: ["toffifee"] },
+  { name: "Merci", brand: "Storck", query: "Merci Schokolade", wikiTitle: "Merci_(Süßigkeit)", nameMust: ["merci"], imageOverride: "https://commons.wikimedia.org/wiki/Special:FilePath/Merci_-_Milk_Selection-6326.jpg?width=600" },
+  { name: "Lindt Lindor", brand: "Lindt", query: "Lindt Lindor", wikiTitle: "Lindt_&_Sprüngli", nameMust: ["lindor"], imageOverride: "https://commons.wikimedia.org/wiki/Special:FilePath/Lindor_balls_(1).jpg?width=600" },
 
   // Fruchtgummi / Bonbons
-  { name: "Haribo Goldbären", brand: "Haribo", query: "Haribo Goldbären" },
-  { name: "Haribo Color-Rado", brand: "Haribo", query: "Haribo Color-Rado" },
-  { name: "Haribo Pico-Balla", brand: "Haribo", query: "Haribo Pico-Balla" },
-  { name: "Haribo Tropi-Frutti", brand: "Haribo", query: "Haribo Tropi-Frutti", barcode: "4001686326107" },
-  { name: "Maoam", brand: "Haribo", query: "Maoam", barcode: "4001686310101" },
-  { name: "Mamba", brand: "Storck", query: "Mamba Kaubonbon" },
-  { name: "Nimm2", brand: "Storck", query: "Nimm 2 Bonbon", barcode: "4014400900224" },
-  { name: "Nimm2 Lachgummi", brand: "Storck", query: "Nimm 2 Lachgummi", barcode: "4014400900859" },
-  { name: "Nimm2 Soft", brand: "Storck", query: "Nimm 2 Soft" },
-  { name: "Werther's Echte", brand: "Storck", query: "Werthers Original Echte", barcode: "4014400900057" },
-  { name: "Em-eukal", brand: "Em-eukal", query: "Em-eukal" },
-  { name: "Ricola", brand: "Ricola", query: "Ricola Kräuterbonbon", barcode: "7610700860816" },
+  { name: "Haribo Goldbären", brand: "Haribo", query: "Haribo Goldbären", wikiTitle: "Goldbär", nameMust: ["goldbär", "goldbaer"], imageOverride: "https://commons.wikimedia.org/wiki/Special:FilePath/Gummi_bears_in_a_row.jpg?width=600" },
+  { name: "Haribo Color-Rado", brand: "Haribo", query: "Haribo Color-Rado", wikiTitle: "Haribo", nameMust: ["color", "rado"], imageOverride: "https://commons.wikimedia.org/wiki/Special:FilePath/German_sweets_and_liquorice_confectionery.jpg?width=600" },
+  { name: "Haribo Pico-Balla", brand: "Haribo", query: "Haribo Pico-Balla", wikiTitle: "Haribo", nameMust: ["pico", "balla"], imageOverride: "https://commons.wikimedia.org/wiki/Special:FilePath/Haribo_Pico-Balla-1305.jpg?width=600" },
+  { name: "Haribo Tropi-Frutti", brand: "Haribo", query: "Haribo Tropi-Frutti", wikiTitle: "Haribo", nameMust: ["tropi"], imageOverride: "https://commons.wikimedia.org/wiki/Special:FilePath/Haribo_Tropifrutti-7420.jpg?width=600" },
+  { name: "Maoam", brand: "Haribo", query: "Maoam", wikiTitle: "Maoam", nameMust: ["maoam"], imageOverride: "https://commons.wikimedia.org/wiki/Special:FilePath/Vyrazka_Haribo_Maoam.jpg?width=600" },
+  { name: "Mamba", brand: "Storck", query: "Mamba Kaubonbon", wikiTitle: "Mamba_(Kaubonbon)", nameMust: ["mamba"] },
+  { name: "Nimm2", brand: "Storck", query: "Nimm 2 Bonbon", wikiTitle: "Nimm2", nameMust: ["nimm"] },
+  { name: "Nimm2 Lachgummi", brand: "Storck", query: "Nimm 2 Lachgummi", wikiTitle: "Nimm2", nameMust: ["lachgummi"] },
+  { name: "Nimm2 Soft", brand: "Storck", query: "Nimm 2 Soft", wikiTitle: "Nimm2", nameMust: ["nimm", "soft"] },
+  { name: "Werther's Echte", brand: "Storck", query: "Werthers Original Echte", wikiTitle: "Werther's_Original", nameMust: ["werther"] },
+  { name: "Em-eukal", brand: "Em-eukal", query: "Em-eukal", wikiTitle: "Em-eukal", nameMust: ["em-eukal", "em eukal", "eukal"] },
+  { name: "Ricola", brand: "Ricola", query: "Ricola Kräuterbonbon", wikiTitle: "Ricola", nameMust: ["ricola"] },
 
   // Lakritz / Sauer
-  { name: "Haribo Lakritz-Schnecken", brand: "Haribo", query: "Haribo Lakritz Schnecken", barcode: "4001686300077" },
-  { name: "Katjes Salzige Heringe", brand: "Katjes", query: "Katjes Salzige Heringe" },
-  { name: "Katjes Yoghurt-Gums", brand: "Katjes", query: "Katjes Yoghurt Gums" },
+  { name: "Haribo Lakritz-Schnecken", brand: "Haribo", query: "Haribo Lakritz Schnecken", wikiTitle: "Haribo", nameMust: ["lakritz", "schnecke"] },
+  { name: "Katjes Salzige Heringe", brand: "Katjes", query: "Katjes Salzige Heringe", wikiTitle: "Katjes", nameMust: ["salzig", "hering"], imageOverride: "https://commons.wikimedia.org/wiki/Special:FilePath/Katjes_Salzige_Heringe-6295.jpg?width=600" },
+  { name: "Katjes Yoghurt-Gums", brand: "Katjes", query: "Katjes Yoghurt Gums", wikiTitle: "Katjes", nameMust: ["yoghurt", "joghurt"], imageOverride: "https://commons.wikimedia.org/wiki/Special:FilePath/Katjes_Joghurt-Gums_(0877).jpg?width=600" },
 
   // Klassiker
-  { name: "Milky Way", brand: "Mars", query: "Milky Way", barcode: "5000159403030" },
-  { name: "Smarties", brand: "Nestlé", query: "Smarties Nestle" },
-  { name: "M&Ms", brand: "Mars", query: "M&Ms Peanut", barcode: "5000159419680" },
-  { name: "After Eight", brand: "Nestlé", query: "After Eight" },
-  { name: "Mozartkugel", brand: "Reber", query: "Mozartkugel Reber" },
-  { name: "Lindt Goldhase", brand: "Lindt", query: "Lindt Goldhase", barcode: "7610400077736" },
-  { name: "Kinder Schoko-Bons", brand: "Ferrero", query: "Kinder Schoko-Bons" },
-  { name: "Kinder Überraschungs-Ei", brand: "Ferrero", query: "Kinder Überraschung", barcode: "8000500179529" },
-  { name: "Lakritz-Konfekt", brand: "Haribo", query: "Haribo Lakritz Konfekt", barcode: "4001686325117" },
-  { name: "Ahoj-Brause Brausepulver", brand: "Ahoj-Brause", query: "Ahoj Brause Brausepulver" },
-  { name: "Center Shock", brand: "Center Shock", query: "Center Shock", barcode: "4017101000059" },
-  { name: "Ahoj-Brause", brand: "Ahoj-Brause", query: "Ahoj Brause" },
-  { name: "PEZ", brand: "PEZ", query: "PEZ Bonbon", barcode: "4011600102014" },
+  { name: "Milky Way", brand: "Mars", query: "Milky Way", wikiTitle: "Milky_Way_(Schokoriegel)", nameMust: ["milky", "way"] },
+  { name: "Smarties", brand: "Nestlé", query: "Smarties Nestle", wikiTitle: "Smarties", nameMust: ["smarties"] },
+  { name: "M&Ms", brand: "Mars", query: "M&Ms Peanut", wikiTitle: "M&M's", nameMust: ["m&m"] },
+  { name: "After Eight", brand: "Nestlé", query: "After Eight", wikiTitle: "After_Eight", nameMust: ["after", "eight"] },
+  { name: "Mozartkugel", brand: "Reber", query: "Mozartkugel Reber", wikiTitle: "Mozartkugel", nameMust: ["mozart"] },
+  { name: "Lindt Goldhase", brand: "Lindt", query: "Lindt Goldhase", wikiTitle: "Goldhase", nameMust: ["goldhase"] },
+  { name: "Kinder Schoko-Bons", brand: "Ferrero", query: "Kinder Schoko-Bons", wikiTitle: "Kinder_Schoko-Bons", nameMust: ["schoko-bons", "schoko bons"] },
+  { name: "Kinder Überraschungs-Ei", brand: "Ferrero", query: "Kinder Überraschung", wikiTitle: "Überraschungsei", nameMust: ["überraschung", "ueberraschung", "kinder"] },
+  { name: "Lakritz-Konfekt", brand: "Haribo", query: "Haribo Lakritz Konfekt", wikiTitle: "Haribo", nameMust: ["lakritz", "konfekt"] },
+  { name: "Ahoj-Brause Brausepulver", brand: "Ahoj-Brause", query: "Ahoj Brause Brausepulver", wikiTitle: "Ahoj-Brause", nameMust: ["ahoj", "brausepulver"] },
+  { name: "Center Shock", brand: "Center Shock", query: "Center Shock", wikiTitle: "Center_Shock", nameMust: ["center", "shock"] },
+  { name: "Ahoj-Brause", brand: "Ahoj-Brause", query: "Ahoj Brause", wikiTitle: "Ahoj-Brause", nameMust: ["ahoj"] },
+  { name: "PEZ", brand: "PEZ", query: "PEZ Bonbon", wikiTitle: "PEZ", nameMust: ["pez"] },
 
   // Kekse
-  { name: "Leibniz Butterkeks", brand: "Bahlsen", query: "Leibniz Butterkeks", barcode: "4017100100741" },
-  { name: "Prinzenrolle", brand: "DeBeukelaer", query: "Prinzenrolle" },
-  { name: "Hobbits", brand: "Bahlsen", query: "Hobbits Bahlsen", barcode: "4017100118041" },
-  { name: "Choco Crossies", brand: "Nestlé", query: "Choco Crossies", barcode: "4005500250017" },
+  { name: "Leibniz Butterkeks", brand: "Bahlsen", query: "Leibniz Butterkeks", wikiTitle: "Leibniz-Keks", nameMust: ["leibniz", "butterkeks"] },
+  { name: "Prinzenrolle", brand: "DeBeukelaer", query: "Prinzenrolle", wikiTitle: "Prinzenrolle", nameMust: ["prinzenrolle", "prinzen rolle"] },
+  { name: "Hobbits", brand: "Bahlsen", query: "Hobbits Bahlsen", wikiTitle: "Hobbits_(Keks)", nameMust: ["hobbit"] },
+  { name: "Choco Crossies", brand: "Nestlé", query: "Choco Crossies", wikiTitle: "Choco_Crossies", nameMust: ["choco", "crossies"] },
 ];
