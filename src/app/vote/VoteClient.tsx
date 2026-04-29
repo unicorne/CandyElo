@@ -43,16 +43,18 @@ function VsChip() {
   );
 }
 
+const SWAP_DELAY_MS = 220;
+
 export default function VoteClient() {
   const [pair, setPair] = useState<PairResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [nextPair, setNextPair] = useState<PairResponse | null>(null);
+  const [initialError, setInitialError] = useState<string | null>(null);
   const [voteCount, setVoteCount] = useState(0);
   const [streak, setStreak] = useState(0);
-  const [submitting, setSubmitting] = useState(false);
   const [picked, setPicked] = useState<"a" | "b" | null>(null);
   const [floats, setFloats] = useState<FloatingDelta[]>([]);
   const floatId = useRef(0);
+  const prefetchInFlight = useRef(false);
 
   const fetchPair = useCallback(
     async (excludeIds?: { a?: string; b?: string }) => {
@@ -71,26 +73,39 @@ export default function VoteClient() {
     [],
   );
 
-  const loadNext = useCallback(
-    async (excludeIds?: { a?: string; b?: string }) => {
-      setLoading(true);
-      setError(null);
-      setPicked(null);
+  const prefetchNext = useCallback(
+    async (excludeA?: string, excludeB?: string) => {
+      if (prefetchInFlight.current) return;
+      prefetchInFlight.current = true;
       try {
-        const next = await fetchPair(excludeIds);
-        setPair(next);
-      } catch (e) {
-        setError((e as Error).message);
+        const next = await fetchPair({ a: excludeA, b: excludeB });
+        setNextPair(next);
+      } catch {
+        /* swallow — we'll fall back to a synchronous fetch on swap */
       } finally {
-        setLoading(false);
+        prefetchInFlight.current = false;
       }
     },
     [fetchPair],
   );
 
+  // First load: fetch current pair, then immediately prefetch the next.
   useEffect(() => {
-    loadNext();
-  }, [loadNext]);
+    let canceled = false;
+    (async () => {
+      try {
+        const first = await fetchPair();
+        if (canceled) return;
+        setPair(first);
+        prefetchNext(first.a.id, first.b.id);
+      } catch (e) {
+        if (!canceled) setInitialError((e as Error).message);
+      }
+    })();
+    return () => {
+      canceled = true;
+    };
+  }, [fetchPair, prefetchNext]);
 
   const haptic = useCallback(() => {
     try {
@@ -111,7 +126,6 @@ export default function VoteClient() {
 
   const submitVote = useCallback(
     async (winner: CandyDTO, loser: CandyDTO, token: string) => {
-      setSubmitting(true);
       try {
         const res = await fetch("/api/vote", {
           method: "POST",
@@ -144,8 +158,6 @@ export default function VoteClient() {
       } catch (e) {
         toast.error(`Netzwerkfehler: ${(e as Error).message}`);
         return null;
-      } finally {
-        setSubmitting(false);
       }
     },
     [],
@@ -153,32 +165,76 @@ export default function VoteClient() {
 
   const handlePick = useCallback(
     async (side: "a" | "b") => {
-      if (!pair || submitting || picked) return;
+      if (!pair || picked) return;
       haptic();
       setPicked(side);
+
       const winner = side === "a" ? pair.a : pair.b;
       const loser = side === "a" ? pair.b : pair.a;
-      const delta = await submitVote(winner, loser, pair.token);
-      if (delta != null) {
-        setVoteCount((c) => c + 1);
-        setStreak((s) => s + 1);
-        popFloat(side === "a" ? "left" : "right", delta);
-        // short celebratory pause before swapping
-        await new Promise((r) => setTimeout(r, 220));
-        await loadNext({ a: loser.id });
-      } else {
-        setStreak(0);
-        await loadNext();
+      const token = pair.token;
+      const floatSide: "left" | "right" = side === "a" ? "left" : "right";
+
+      // Fire the vote API but don't block the swap on it.
+      const votePromise = submitVote(winner, loser, token);
+
+      // Race: if the API confirms in <SWAP_DELAY_MS, show the +ELO float
+      // before we swap. Otherwise it lands silently after the swap.
+      const minWait = new Promise<"timeout">((r) =>
+        setTimeout(() => r("timeout"), SWAP_DELAY_MS),
+      );
+      const raced = await Promise.race([votePromise, minWait]);
+      if (raced !== "timeout" && typeof raced === "number") {
+        popFloat(floatSide, raced);
       }
+
+      // Swap to the prefetched next pair if we have it, else fetch synchronously.
+      let upcoming = nextPair;
+      if (!upcoming) {
+        try {
+          upcoming = await fetchPair({ a: loser.id });
+        } catch (e) {
+          toast.error(`Konnte kein neues Paar laden: ${(e as Error).message}`);
+        }
+      }
+      if (upcoming) {
+        setPair(upcoming);
+        setNextPair(null);
+        setPicked(null);
+        prefetchNext(upcoming.a.id, upcoming.b.id);
+      } else {
+        setPicked(null);
+      }
+
+      // Reconcile counters & streak with the real API outcome (which may still
+      // be pending). Don't update toast here — already shown above on errors.
+      void votePromise.then((delta) => {
+        if (delta != null) {
+          setVoteCount((c) => c + 1);
+          setStreak((s) => s + 1);
+        } else {
+          setStreak(0);
+        }
+      });
     },
-    [pair, submitting, picked, submitVote, loadNext, haptic, popFloat],
+    [pair, picked, haptic, submitVote, nextPair, fetchPair, prefetchNext, popFloat],
   );
 
   const handleSkip = useCallback(async () => {
-    if (loading || submitting) return;
+    if (!pair || picked) return;
     setStreak(0);
-    await loadNext({ a: pair?.a.id, b: pair?.b.id });
-  }, [pair, loadNext, loading, submitting]);
+    let upcoming = nextPair;
+    if (!upcoming) {
+      try {
+        upcoming = await fetchPair({ a: pair.a.id, b: pair.b.id });
+      } catch (e) {
+        toast.error(`Fehler: ${(e as Error).message}`);
+        return;
+      }
+    }
+    setPair(upcoming);
+    setNextPair(null);
+    prefetchNext(upcoming.a.id, upcoming.b.id);
+  }, [pair, picked, nextPair, fetchPair, prefetchNext]);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -196,7 +252,6 @@ export default function VoteClient() {
 
   return (
     <div className="flex flex-1 flex-col">
-      {/* sun-streak gradient */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-10"
@@ -243,64 +298,38 @@ export default function VoteClient() {
           Was magst du <span className="text-primary">lieber?</span>
         </h1>
 
-        {/* Stable card grid — never reflows. Cards always sit in cols [card | VS | card]. */}
         <div className="w-full max-w-3xl relative">
-          <div
-            className="
-              grid grid-cols-[1fr_auto_1fr] gap-2 sm:gap-4 items-stretch
-              min-h-[260px] sm:min-h-[360px] relative
-            "
-          >
-            {error ? (
+          <div className="grid grid-cols-[1fr_auto_1fr] gap-2 sm:gap-4 items-stretch min-h-[260px] sm:min-h-[360px] relative">
+            {initialError ? (
               <div className="col-span-3 text-center space-y-3 py-8">
-                <p className="text-destructive">{error}</p>
-                <Button onClick={() => loadNext()}>Nochmal versuchen</Button>
+                <p className="text-destructive">{initialError}</p>
+                <Button onClick={() => window.location.reload()}>Neu laden</Button>
               </div>
-            ) : loading || !pair ? (
+            ) : !pair ? (
               <>
                 <CandyCardSkeleton />
                 <VsChip />
                 <CandyCardSkeleton />
               </>
             ) : (
-              <AnimatePresence mode="popLayout" initial={false}>
-                <motion.div
-                  key={`a-${pair.a.id}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.18 }}
-                  className="min-w-0"
-                >
-                  <CandyCard
-                    candy={pair.a}
-                    picked={picked === "a"}
-                    dimmed={picked === "b"}
-                    disabled={submitting || picked !== null}
-                    onPick={() => handlePick("a")}
-                  />
-                </motion.div>
-                <VsChip key="vs" />
-                <motion.div
-                  key={`b-${pair.b.id}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.18 }}
-                  className="min-w-0"
-                >
-                  <CandyCard
-                    candy={pair.b}
-                    picked={picked === "b"}
-                    dimmed={picked === "a"}
-                    disabled={submitting || picked !== null}
-                    onPick={() => handlePick("b")}
-                  />
-                </motion.div>
-              </AnimatePresence>
+              <>
+                <CardSlot
+                  pair={pair}
+                  which="a"
+                  picked={picked}
+                  onPick={() => handlePick("a")}
+                />
+                <VsChip />
+                <CardSlot
+                  pair={pair}
+                  which="b"
+                  picked={picked}
+                  onPick={() => handlePick("b")}
+                />
+              </>
             )}
 
-            {/* Floating ELO deltas — absolutely positioned, no layout impact */}
+            {/* Floating ELO deltas — absolutely positioned, zero layout impact */}
             <div className="pointer-events-none absolute inset-0">
               <AnimatePresence>
                 {floats.map((f) => (
@@ -326,7 +355,7 @@ export default function VoteClient() {
           variant="ghost"
           size="sm"
           onClick={handleSkip}
-          disabled={loading || submitting}
+          disabled={!pair || picked !== null}
           className="text-muted-foreground"
         >
           <SkipForward className="size-4 mr-1" />
@@ -337,6 +366,47 @@ export default function VoteClient() {
           Tipp: ← / → oder 1 / 2 zum Wählen, Leertaste = überspringen
         </p>
       </main>
+    </div>
+  );
+}
+
+// One grid slot. Keyed by candy id so swapping the pair triggers a clean
+// cross-fade exactly in this slot — no layout reflow, no skeleton flash.
+function CardSlot({
+  pair,
+  which,
+  picked,
+  onPick,
+}: {
+  pair: PairResponse;
+  which: "a" | "b";
+  picked: "a" | "b" | null;
+  onPick: () => void;
+}) {
+  const candy = which === "a" ? pair.a : pair.b;
+  const isPicked = picked === which;
+  const isDimmed = picked != null && picked !== which;
+
+  return (
+    <div className="min-w-0 relative">
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.div
+          key={candy.id}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.16 }}
+          className="h-full"
+        >
+          <CandyCard
+            candy={candy}
+            picked={isPicked}
+            dimmed={isDimmed}
+            disabled={picked !== null}
+            onPick={onPick}
+          />
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
