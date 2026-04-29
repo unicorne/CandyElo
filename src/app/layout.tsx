@@ -17,19 +17,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://candyelo.vercel.app"),
   title: "CandyElo — Welche Süßigkeit gewinnt?",
   description:
-    "Stelle deine Lieblings-Süßigkeit zur Wahl: zwei Kandidaten, ein Sieger. Live-Ranking aller deutschen Klassiker.",
+    "Stimm ab: zwei Süßigkeiten, ein Sieger. Live-Ranking aller deutschen Klassiker.",
   openGraph: {
-    title: "CandyElo",
+    title: "CandyElo — welche Süßigkeit gewinnt?",
     description:
-      "Welche Süßigkeit ist die beliebteste? Wähle und sieh das Live-Ranking.",
+      "Tipp auf deinen Favoriten. Das Ranking entsteht live aus allen Stimmen.",
     type: "website",
+    locale: "de_DE",
+    url: "https://candyelo.vercel.app",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CandyElo",
+    description: "Welche Süßigkeit gewinnt? Stimm ab und sieh das Live-Ranking.",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0b0c",
+  themeColor: "#FFE9E1",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
