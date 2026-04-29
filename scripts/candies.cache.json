@@ -152,7 +152,7 @@
   {
     "name": "Oreo",
     "brand": "Mondelez",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Oreo-Two-Cookies.jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -232,7 +232,7 @@
   {
     "name": "funny-frisch Kessel Chips",
     "brand": "funny-frisch",
-    "image_url": "https://upload.wikimedia.org/wikipedia/de/thumb/4/47/Intersnack_logo.svg/600px-Intersnack_logo.svg.png",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -242,7 +242,7 @@
   {
     "name": "Original Sahne Muh-Muhs",
     "brand": "Storck",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/2023_Toffifee_(3).jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -252,7 +252,7 @@
   {
     "name": "Ültje Erdnüsse gesalzen",
     "brand": "Ültje",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ueltje_Schwerte_004.JPG?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -292,7 +292,7 @@
   {
     "name": "Wrigley's Extra Professional Mints",
     "brand": "Wrigley's",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wrigley_Building_-_Chicago%2C_Illinois.JPG?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -322,7 +322,7 @@
   {
     "name": "M&M's Peanut",
     "brand": "Mars",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Plain-M%26Ms-Pile.jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -372,7 +372,7 @@
   {
     "name": "Bounty Riegel",
     "brand": "Mars",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bounty-Split.jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -382,7 +382,7 @@
   {
     "name": "Chupa Chups Frucht",
     "brand": "Chupa Chups",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/ChupaChups_a_Corea.JPG?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -392,7 +392,7 @@
   {
     "name": "Daim XL",
     "brand": "Mondelez",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Daim-Bar-Split.jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -402,7 +402,7 @@
   {
     "name": "Hanuta",
     "brand": "Ferrero",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hanuta_11-2015.jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -482,7 +482,7 @@
   {
     "name": "Pom-Bär Ketchup",
     "brand": "Lorenz",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pom_Bear_original_pack_(fair_use).jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -522,7 +522,7 @@
   {
     "name": "Liebesperlen",
     "brand": "Liebesperlen",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nonpareils.jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -542,7 +542,7 @@
   {
     "name": "Tic Tac Fresh Orange",
     "brand": "Ferrero",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/2024_Tic_Tac_(4).jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -602,7 +602,7 @@
   {
     "name": "Balisto Korn-Mix",
     "brand": "Mars",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Balisto_vier_Riegel.jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -622,7 +622,7 @@
   {
     "name": "Dickmann's Schokoküsse",
     "brand": "Dickmann's",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Choco_kiss.png?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -632,7 +632,7 @@
   {
     "name": "Dominosteine",
     "brand": "Dominosteine",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dominostein_edelherb.jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -652,7 +652,7 @@
   {
     "name": "Erfrischungsstäbchen",
     "brand": "Erfrischungsstäbchen",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Erfrischungsstaebchen.JPG?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -692,7 +692,7 @@
   {
     "name": "Haribo Schlümpfe",
     "brand": "Haribo",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Schlumpfstatue_in_Bruessel.jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -702,7 +702,7 @@
   {
     "name": "Katjes Yoghurt-Gums",
     "brand": "Katjes",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Katjes_Joghurt-Gums_(0877).jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -732,7 +732,7 @@
   {
     "name": "Marzipankartoffeln",
     "brand": "Marzipankartoffeln",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rolling_out_the_marzipan_(11029638025).jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -742,7 +742,7 @@
   {
     "name": "Milka Alpenmilch",
     "brand": "Milka",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Milka_Alpine_Milk_Chocolate_bar_100g.jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -792,7 +792,7 @@
   {
     "name": "Rumkugeln",
     "brand": "Rumkugeln",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rumkugeln.jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -812,7 +812,7 @@
   {
     "name": "Schaumzucker-Speck",
     "brand": "Schaumzucker",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fl%C3%B8debolle_(8283773976).jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -882,7 +882,7 @@
   {
     "name": "Hubba Bubba",
     "brand": "Wrigley's",
-    "image_url": "https://upload.wikimedia.org/wikipedia/de/a/a5/Hubba_Bubba_logo.png",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,

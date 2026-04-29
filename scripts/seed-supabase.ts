@@ -44,16 +44,24 @@ async function main() {
   }
   const byName = new Map(existing?.map((r) => [r.name, r.id]) ?? []);
 
+  // Only Open Food Facts images go into the DB. Anything else (Wikipedia,
+  // Commons, hand-curated overrides pointing at non-OFF hosts) is treated as
+  // "no image" — those entries are skipped on insert and have their image
+  // cleared on update. The vote API filters image_url IS NULL, so they won't
+  // appear in pairings until OFF data is available for them.
+  const isOffImage = (url: string | null) =>
+    !!url && /(images|static|world)\.openfoodfacts\.org/i.test(url);
+
   let inserted = 0;
   let updated = 0;
+  let skipped = 0;
   for (const c of candies) {
+    const useImage = isOffImage(c.image_url);
     const id = byName.get(c.name);
     if (id) {
-      // For updates: only overwrite a field when we have a non-null new value.
-      // This way images can refresh without nulling out nutrition we collected
-      // earlier (or vice versa).
       const update: Record<string, unknown> = { brand: c.brand };
-      if (c.image_url != null) update.image_url = c.image_url;
+      // Always reflect the image source: OFF wins, anything else clears it.
+      update.image_url = useImage ? c.image_url : null;
       if (c.kcal_100g != null) update.kcal_100g = c.kcal_100g;
       if (c.sugar_100g != null) update.sugar_100g = c.sugar_100g;
       if (c.fat_100g != null) update.fat_100g = c.fat_100g;
@@ -66,6 +74,10 @@ async function main() {
       }
       updated++;
     } else {
+      if (!useImage) {
+        skipped++;
+        continue;
+      }
       const payload = {
         name: c.name,
         brand: c.brand,
@@ -83,7 +95,7 @@ async function main() {
       inserted++;
     }
   }
-  console.log(`Done. ${inserted} inserted, ${updated} updated.`);
+  console.log(`Done. ${inserted} inserted, ${updated} updated, ${skipped} skipped (no OFF image).`);
 }
 
 main().catch((e) => {

@@ -33,7 +33,18 @@ pnpm seed:fetch    # pulls Open Food Facts data → scripts/candies.cache.json
 pnpm seed:push     # uploads cache to Supabase
 ```
 
-`seed:fetch` is idempotent — re-running only refetches misses.
+`seed:fetch` is idempotent — re-running only refetches misses. Only OFF data
+makes it into the DB: `seed:push` filters out anything whose `image_url`
+isn't from `*.openfoodfacts.org` (so Wikipedia / Commons fallbacks stay in
+the cache for reference but never appear on the live site). To add a candy
+that OFF doesn't surface via search, look up its EAN-13 on
+`world.openfoodfacts.org/product/<barcode>` and add the `barcode` field to
+its entry in `scripts/candy-list.ts`; barcode lookups bypass the strict
+brand+name matcher.
+
+`pnpm seed:wiki` exists but is **opt-in only** — it pulls Wikipedia /
+Commons images, but those are not pushed to Supabase by `seed:push`. Use it
+if you ever want to switch the policy back to "Wikipedia as fallback".
 
 ### 3. Run
 
