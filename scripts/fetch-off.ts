@@ -1,10 +1,12 @@
-// Fetch nutrition + ingredients from Open Food Facts.
-// IMPORTANT: This script no longer overwrites `image_url` — that comes from
-// `seed:wiki`. We only fill kcal/sugar/fat/ingredients here, and only if the
-// match is high-confidence (all `nameMust` tokens present in the OFF product
-// name). Better to leave nutrition null than show wrong values.
+// Fetch image + nutrition + ingredients from Open Food Facts.
+// Only writes when the match is high-confidence: all `nameMust` tokens must
+// appear in the OFF product_name AND the brand must match AND kcal must fall
+// in the 150-700 candy band. When a confident match has an image_front_url,
+// that image overwrites whatever Wikipedia/Commons set earlier (OFF is closer
+// to the actual packaging). On a low-confidence search we keep the existing
+// image and leave nutrition null.
 //
-// Run: pnpm seed:fetch  (after pnpm seed:wiki)
+// Run: pnpm seed:fetch  (typically after pnpm seed:wiki)
 
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -20,6 +22,9 @@ type OffProduct = {
   generic_name?: string;
   generic_name_de?: string;
   brands?: string;
+  image_front_url?: string;
+  image_front_de_url?: string;
+  image_url?: string;
   ingredients_text_de?: string;
   ingredients_text?: string;
   nutriments?: Record<string, number | string | undefined>;
@@ -110,45 +115,66 @@ async function fetchWithRetry(url: string, attempts = 3): Promise<Response | nul
   return null;
 }
 
+const OFF_FIELDS = [
+  "code",
+  "product_name",
+  "product_name_de",
+  "generic_name",
+  "generic_name_de",
+  "brands",
+  "image_front_url",
+  "image_front_de_url",
+  "image_url",
+  "ingredients_text_de",
+  "ingredients_text",
+  "nutriments",
+].join(",");
+
 async function searchOff(seed: SeedCandy): Promise<OffProduct[]> {
   if (seed.barcode) {
-    const url = `https://world.openfoodfacts.org/api/v2/product/${seed.barcode}.json`;
+    const url = `https://world.openfoodfacts.org/api/v2/product/${seed.barcode}.json?fields=${OFF_FIELDS}`;
     const res = await fetchWithRetry(url);
     if (res?.ok) {
       const json = (await res.json()) as { product?: OffProduct; status?: number };
       if (json.product && json.status !== 0) return [json.product];
     }
   }
-  const v2 = new URL("https://world.openfoodfacts.org/api/v2/search");
-  v2.searchParams.set("search_terms", seed.query);
-  v2.searchParams.set("page_size", "12");
-  v2.searchParams.set(
-    "fields",
-    [
-      "code",
-      "product_name",
-      "product_name_de",
-      "generic_name",
-      "generic_name_de",
-      "brands",
-      "ingredients_text_de",
-      "ingredients_text",
-      "nutriments",
-    ].join(","),
-  );
-  const res = await fetchWithRetry(v2.toString());
+  // Legacy CGI search — ranks by text relevance. The v2 /api/v2/search endpoint
+  // sorts by popularity, which buries actual matches under unrelated products.
+  const cgi = new URL("https://world.openfoodfacts.org/cgi/search.pl");
+  cgi.searchParams.set("search_terms", seed.query);
+  cgi.searchParams.set("search_simple", "1");
+  cgi.searchParams.set("action", "process");
+  cgi.searchParams.set("json", "1");
+  cgi.searchParams.set("page_size", "16");
+  cgi.searchParams.set("fields", OFF_FIELDS);
+  const res = await fetchWithRetry(cgi.toString());
   if (!res?.ok) return [];
-  const json = (await res.json()) as { products?: OffProduct[] };
+  let json: { products?: OffProduct[] };
+  try {
+    json = (await res.json()) as { products?: OffProduct[] };
+  } catch {
+    return [];
+  }
   return json.products ?? [];
 }
 
-function applyNutrition(
+function offImageUrl(p: OffProduct): string | null {
+  return p.image_front_de_url || p.image_front_url || p.image_url || null;
+}
+
+function applyMatch(
   seed: SeedCandy,
   cached: CachedCandy,
   p: OffProduct,
 ): CachedCandy {
+  const offImg = offImageUrl(p);
+  // OFF wins on a high-confidence match — that's exactly what the strict
+  // matcher already enforced. Fall back to the hand-curated override, then to
+  // whatever Wikipedia/Commons left behind, only if OFF had no image.
   return {
     ...cached,
+    image_url: offImg ?? seed.imageOverride ?? cached.image_url,
     kcal_100g: num(p.nutriments?.["energy-kcal_100g"]),
     sugar_100g: num(p.nutriments?.["sugars_100g"]),
     fat_100g: num(p.nutriments?.["fat_100g"]),
@@ -182,11 +208,13 @@ async function main() {
       ingredients_short: null,
       source_code: null,
     };
-    if (
+    // Skip only if we already have an OFF-sourced image AND nutrition.
+    const hasOffImg = !!cached.image_url?.includes("openfoodfacts.org");
+    const hasNutrition =
       cached.kcal_100g != null &&
       cached.kcal_100g >= 150 &&
-      cached.kcal_100g <= 700
-    ) {
+      cached.kcal_100g <= 700;
+    if (hasOffImg && hasNutrition) {
       kept++;
       byName.set(seed.name, cached);
       continue;
@@ -200,9 +228,11 @@ async function main() {
     }
     const picked = pick(seed, products);
     if (picked) {
-      const updated = applyNutrition(seed, cached, picked);
+      const updated = applyMatch(seed, cached, picked);
       byName.set(seed.name, updated);
-      console.log(`✓ ${Math.round(num(picked.nutriments?.["energy-kcal_100g"]) ?? 0)}kcal`);
+      const kcal = Math.round(num(picked.nutriments?.["energy-kcal_100g"]) ?? 0);
+      const tag = offImageUrl(picked) ? "img+" : "    ";
+      console.log(`✓ ${tag} ${kcal}kcal`);
       hits++;
     } else {
       byName.set(seed.name, cached);

@@ -39,8 +39,8 @@ const BAD_FILE_PATTERNS = [
   /hobbit_(feet|foot|costume|movie|film|character|cosplay)/i,
   // Founders / company portraits (Hans Riegel etc.)
   /(hans|paul|johann)_riegel|riegel_(senior|junior|sen\.|jun\.)/i,
-  // Geography / landmarks
-  /lake|see|f.hre|zsg|kilchberg|w.denswil|b.rkliplatz|aachen|berlin|firenze|borsa|hannover_in_wort|wort_und_bild|1910_/i,
+  // Geography / landmarks (TUC peaks in the Pyrenees, etc.)
+  /lake|see|f.hre|zsg|kilchberg|w.denswil|b.rkliplatz|aachen|berlin|firenze|borsa|hannover_in_wort|wort_und_bild|1910_|antananarivo|madagas|tarterau|comenge|pincela|saumet|vaciver|mieidia|arenho|pyren/i,
   /lego|brick/i,
   /panoramio/i,
   /flag|flagge|wahrzeichen/i,
@@ -241,6 +241,10 @@ function isWikimedia(url: string | null): boolean {
   return Boolean(url && /wikimedia\.org|commons\.wikimedia\.org/.test(url));
 }
 
+function isOffImage(url: string | null): boolean {
+  return Boolean(url && /openfoodfacts\.org/.test(url));
+}
+
 async function main() {
   let arr: CachedCandy[] = [];
   try {
@@ -266,10 +270,15 @@ async function main() {
       ingredients_short: null,
       source_code: null,
     };
-    if (
-      isWikimedia(cached.image_url) &&
-      !seed.imageOverride // override always wins
-    ) {
+    // Don't overwrite an OFF image — that's the canonical packaging shot for
+    // candies the strict matcher already validated. Don't re-fetch a Wikimedia
+    // image we already have unless an explicit override exists.
+    if (isOffImage(cached.image_url)) {
+      kept++;
+      byName.set(seed.name, cached);
+      continue;
+    }
+    if (isWikimedia(cached.image_url) && !seed.imageOverride) {
       kept++;
       byName.set(seed.name, cached);
       continue;
