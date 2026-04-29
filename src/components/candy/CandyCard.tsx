@@ -39,12 +39,12 @@ export function CandyCard({
     n == null ? "—" : Math.round(n).toString();
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: dimmed ? 0.4 : 1, y: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-      className="min-w-0 w-full"
+    <div
+      className="min-w-0 w-full h-full"
+      style={{
+        opacity: dimmed ? 0.4 : 1,
+        transition: "opacity 140ms ease-out",
+      }}
     >
       <Card
         role="button"
@@ -61,13 +61,13 @@ export function CandyCard({
         className={`
           relative overflow-hidden cursor-pointer select-none
           h-full p-3 sm:p-4 flex flex-col gap-3
-          transition-shadow duration-150
+          transition-[box-shadow,background-color] duration-150
           ${disabled ? "pointer-events-none" : "active:brightness-95"}
-          ${picked ? "ring-2 ring-primary shadow-xl shadow-primary/30 bg-primary/5" : "hover:shadow-md"}
+          ${picked ? "ring-4 ring-primary shadow-2xl shadow-primary/40 bg-primary/10" : "ring-1 ring-border hover:shadow-md"}
         `}
       >
         {picked && (
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-accent/10 pointer-events-none" />
         )}
 
         <div className="relative w-full aspect-square bg-muted/40 rounded-lg overflow-hidden">
@@ -137,7 +137,7 @@ export function CandyCard({
           </motion.div>
         )}
       </Card>
-    </motion.div>
+    </div>
   );
 }
 

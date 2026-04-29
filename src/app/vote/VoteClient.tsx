@@ -370,8 +370,9 @@ export default function VoteClient() {
   );
 }
 
-// One grid slot. Keyed by candy id so swapping the pair triggers a clean
-// cross-fade exactly in this slot — no layout reflow, no skeleton flash.
+// One grid slot. Keyed by candy.id so a pair swap remounts the card and the
+// CandyCard's own initial→animate fade plays cleanly. No outer AnimatePresence
+// = no popLayout = no chance of two cards in the same slot at once.
 function CardSlot({
   pair,
   which,
@@ -388,25 +389,15 @@ function CardSlot({
   const isDimmed = picked != null && picked !== which;
 
   return (
-    <div className="min-w-0 relative">
-      <AnimatePresence mode="popLayout" initial={false}>
-        <motion.div
-          key={candy.id}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.16 }}
-          className="h-full"
-        >
-          <CandyCard
-            candy={candy}
-            picked={isPicked}
-            dimmed={isDimmed}
-            disabled={picked !== null}
-            onPick={onPick}
-          />
-        </motion.div>
-      </AnimatePresence>
+    <div className="min-w-0">
+      <CandyCard
+        key={candy.id}
+        candy={candy}
+        picked={isPicked}
+        dimmed={isDimmed}
+        disabled={picked !== null}
+        onPick={onPick}
+      />
     </div>
   );
 }
