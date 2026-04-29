@@ -232,12 +232,12 @@
   {
     "name": "funny-frisch Kessel Chips",
     "brand": "funny-frisch",
-    "image_url": null,
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/400/358/610/8937/front_de.3.400.jpg",
+    "kcal_100g": 493,
+    "sugar_100g": 3,
+    "fat_100g": 26,
+    "ingredients_short": "Kartoffeln, pflanzliche Öle (Sonnenblume, Raps in veränderlichen Gewichtsanteilen), Zucker",
+    "source_code": "4003586108937"
   },
   {
     "name": "Original Sahne Muh-Muhs",
@@ -252,12 +252,12 @@
   {
     "name": "Ültje Erdnüsse gesalzen",
     "brand": "Ültje",
-    "image_url": null,
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/400/498/040/1907/front_de.73.400.jpg",
+    "kcal_100g": 619,
+    "sugar_100g": 5.2,
+    "fat_100g": 51,
+    "ingredients_short": "Erdnusskerne, Sonnenblumenöl, Speisesalz Kann Schalenfrüchte (Mandeln, Haselnüsse",
+    "source_code": "4004980401907"
   },
   {
     "name": "Ferrero Giotto",
@@ -278,6 +278,16 @@
     "fat_100g": 42.7,
     "ingredients_short": "Chocolat au LAIT 30% (sucre, beurre de cacao, pâte de cacao, LAIT écrémé en poudre",
     "source_code": "8000500273296"
+  },
+  {
+    "name": "Raffaello",
+    "brand": "Ferrero",
+    "image_url": "https://images.openfoodfacts.org/images/products/400/840/018/3022/front_en.225.400.jpg",
+    "kcal_100g": 627,
+    "sugar_100g": 33.6,
+    "fat_100g": 48.3,
+    "ingredients_short": "Kokosraspel (25, 5 %), Pflanzliche Fette (Palm, Shea)",
+    "source_code": "4008400183022"
   },
   {
     "name": "Wrigley's Spearmint",
@@ -322,12 +332,12 @@
   {
     "name": "M&M's Peanut",
     "brand": "Mars",
-    "image_url": null,
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/500/015/949/2737/front_en.89.400.jpg",
+    "kcal_100g": 524.416135881104,
+    "sugar_100g": 53.0785562632696,
+    "fat_100g": 25.4777070063694,
+    "ingredients_short": "Sucre, _cacahuètes_, pâte de cacao, _lait_ entier en poudre",
+    "source_code": "5000159492737"
   },
   {
     "name": "M&M's Choco",
@@ -372,12 +382,12 @@
   {
     "name": "Bounty Riegel",
     "brand": "Mars",
-    "image_url": null,
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/500/015/955/7771/front_en.125.400.jpg",
+    "kcal_100g": 487.719298245614,
+    "sugar_100g": 48.0701754385965,
+    "fat_100g": 25.9649122807018,
+    "ingredients_short": "Zucker, Kokosraspel, Glukosesirup, Kakaobutter",
+    "source_code": "5000159557771"
   },
   {
     "name": "Chupa Chups Frucht",
@@ -402,12 +412,12 @@
   {
     "name": "Hanuta",
     "brand": "Ferrero",
-    "image_url": null,
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/800/050/027/2442/front_de.114.400.jpg",
+    "kcal_100g": 542,
+    "sugar_100g": 42.7,
+    "fat_100g": 31.9,
+    "ingredients_short": "Zucker, pflanzliche Fette (Palm, Shea), _Weizenmehl_ (13",
+    "source_code": "8000500272442"
   },
   {
     "name": "Kinder Schoko-Bons",
@@ -480,14 +490,14 @@
     "source_code": "90444470"
   },
   {
-    "name": "Pom-Bär Ketchup",
+    "name": "Pom-Bär Original",
     "brand": "Lorenz",
-    "image_url": null,
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/400/052/206/4302/front_en.3.400.jpg",
+    "kcal_100g": 512,
+    "sugar_100g": 1.3,
+    "fat_100g": 28,
+    "ingredients_short": "Kartoffelpulver 31%, Sonnenblumenöl, Kartoffelstärke, Modifizierte Stärke (Tapioka",
+    "source_code": "4000522064302"
   },
   {
     "name": "Pringles Cheese & Onion",
@@ -622,12 +632,12 @@
   {
     "name": "Dickmann's Schokoküsse",
     "brand": "Dickmann's",
-    "image_url": null,
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/403/580/041/7006/front_de.4.400.jpg",
+    "kcal_100g": 422,
+    "sugar_100g": 48.2,
+    "fat_100g": 15.7,
+    "ingredients_short": "sorbit",
+    "source_code": "4035800417006"
   },
   {
     "name": "Dominosteine",
@@ -742,12 +752,12 @@
   {
     "name": "Milka Alpenmilch",
     "brand": "Milka",
-    "image_url": null,
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/762/220/225/7124/front_de.16.400.jpg",
+    "kcal_100g": 539,
+    "sugar_100g": 55,
+    "fat_100g": 31,
+    "ingredients_short": "Zucker, Kakaobutter, Kakaomasse, MAGERMILCHPULVER",
+    "source_code": "7622202257124"
   },
   {
     "name": "Mon Chéri",
@@ -888,5 +898,25 @@
     "fat_100g": null,
     "ingredients_short": null,
     "source_code": null
+  },
+  {
+    "name": "Griesson Chocolate Mountain Cookies",
+    "brand": "Griesson",
+    "image_url": "https://images.openfoodfacts.org/images/products/400/151/811/6999/front_de.12.400.jpg",
+    "kcal_100g": 497,
+    "sugar_100g": 32,
+    "fat_100g": 26,
+    "ingredients_short": "Weizenmehl, Zucker, Kakaomasse, Palmfett",
+    "source_code": "4001518116999"
+  },
+  {
+    "name": "Hitschler Saure Drachenzungen",
+    "brand": "Hitschler",
+    "image_url": "https://images.openfoodfacts.org/images/products/400/384/000/8843/front_de.48.400.jpg",
+    "kcal_100g": 384,
+    "sugar_100g": 63,
+    "fat_100g": 2.1,
+    "ingredients_short": "sugar, glucose-fructose syrup, wheat flour, acids: malic acid",
+    "source_code": "4003840008843"
   }
 ]
