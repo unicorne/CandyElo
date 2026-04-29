@@ -32,7 +32,7 @@ export const CANDY_LIST: SeedCandy[] = [
   { name: "Nestlé Lion Riegel", brand: "Nestlé", query: "Lion Riegel", nameMust: ["lion"], wikiTitle: "Lion_(Schokoriegel)" },
   { name: "Bahlsen Leibniz Pick Up! Choco", brand: "Bahlsen", query: "Leibniz Pick Up Choco", nameMust: ["pick", "up"], wikiTitle: "Pick_Up!" },
   { name: "Kinder Bueno", brand: "Ferrero", query: "Kinder Bueno", nameMust: ["bueno"], wikiTitle: "Kinder_Bueno" },
-  { name: "Oreo", brand: "Mondelez", query: "Oreo Doppelkeks", nameMust: ["oreo"], wikiTitle: "Oreo" },
+  { name: "Oreo", brand: "Mondelez", query: "Oreo Doppelkeks", barcode: "7622300336738", nameMust: ["oreo"], wikiTitle: "Oreo" },
   { name: "Haribo Lakritz Schnecken", brand: "Haribo", query: "Haribo Lakritz Schnecken", nameMust: ["lakritz", "schnecke|rotella|wheel"], wikiTitle: "Haribo" },
   { name: "Niederegger Marzipan", brand: "Niederegger", query: "Niederegger Marzipan", nameMust: ["niederegger"], wikiTitle: "Niederegger_(Unternehmen)" },
   { name: "Trolli Saure Glühwürmchen", brand: "Trolli", query: "Trolli Glühwürmchen Saure", nameMust: ["glühwürm|gluehwuerm|glow worm"], wikiTitle: "Trolli" },

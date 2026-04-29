@@ -152,12 +152,12 @@
   {
     "name": "Oreo",
     "brand": "Mondelez",
-    "image_url": null,
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/762/230/033/6738/front_en.407.400.jpg",
+    "kcal_100g": 472.727272727273,
+    "sugar_100g": 35,
+    "fat_100g": 19,
+    "ingredients_short": "Weizenmehl, Zucker, Palmöl, Rapsöl",
+    "source_code": "7622300336738"
   },
   {
     "name": "Haribo Lakritz Schnecken",
@@ -292,12 +292,12 @@
   {
     "name": "Wrigley's Extra Professional Mints",
     "brand": "Wrigley's",
-    "image_url": null,
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/400/990/049/9927/front_de.4.400.jpg",
+    "kcal_100g": 241,
+    "sugar_100g": 0,
+    "fat_100g": 0.9,
+    "ingredients_short": "SÜSSUNGSMITTEL SORBIT, ISOMALT, SÄUERUNGSMITTEL CITRONENSÄURE, APFELSÄURE TRENNMITTEL E470b",
+    "source_code": "4009900499927"
   },
   {
     "name": "Storck Ice Fresh",
@@ -692,12 +692,12 @@
   {
     "name": "Haribo Schlümpfe",
     "brand": "Haribo",
-    "image_url": null,
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
+    "image_url": "https://images.openfoodfacts.org/images/products/400/168/633/3044/front_fr.26.400.jpg",
+    "kcal_100g": 334,
+    "sugar_100g": 42,
+    "fat_100g": 0.5,
     "ingredients_short": null,
-    "source_code": null
+    "source_code": "4001686333044"
   },
   {
     "name": "Katjes Yoghurt-Gums",
