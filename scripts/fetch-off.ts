@@ -76,16 +76,19 @@ function productName(p: OffProduct): string {
 }
 
 function isHighConfidenceMatch(seed: SeedCandy, p: OffProduct): boolean {
-  const kcal = num(p.nutriments?.["energy-kcal_100g"]);
-  if (kcal == null || kcal < 150 || kcal > 700) return false;
+  // Brand and name match are non-negotiable.
   const brands = normalize(p.brands);
   const brandKey = normalize(seed.brand);
   if (!brands.includes(brandKey) && !brandKey.includes(brands)) return false;
   const name = productName(p);
   const must = seed.nameMust.map(normalize);
-  // ALL nameMust tokens must appear (allow OR-groups within a single token via
-  // alternative spellings — the seed already lists those as separate strings).
-  return must.every((token) => name.includes(token));
+  if (!must.every((token) => name.includes(token))) return false;
+
+  // kcal sanity: when present, must be in candy band. When missing entirely,
+  // accept the match (lots of OFF entries have an image but no nutrition).
+  const kcal = num(p.nutriments?.["energy-kcal_100g"]);
+  if (kcal != null && (kcal < 150 || kcal > 700)) return false;
+  return true;
 }
 
 function pick(seed: SeedCandy, products: OffProduct[]): OffProduct | null {

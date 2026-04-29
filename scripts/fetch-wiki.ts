@@ -25,6 +25,9 @@ const BAD_FILE_PATTERNS = [
   // Animals (snakes named "Mamba", lions named "Lion", etc.)
   /mamba.*serpent|black.mamba|\.snake\.|cobra|dendroaspis|polylepis|polilepis|jamesons|elapidae|viper/i,
   /lions?_park|safari|serengeti|king.*snyggve|löwe_|ishtar|babylon|relief|caribou|wagon|wildlife|zoo_/i,
+  // Theme parks / costumes / character illustrations (Schlümpfe got a Smurf
+  // theme park photo; Hobbits got LOTR cosplay).
+  /harikalar|diyari|theme.?park|themepark|disneyland|dollywood|costume|cosplay|character_(illustration|model)|figurine|smurf.+(park|statue|figure)/i,
   // Cars / aircraft / vehicles
   /\bvoiture|\brace_?car|\bf1\b|fahrzeug|truck|lkw|panzer|formel|formula|locomotive/i,
   /aircraft|airplane|airliner|cargo[_-]?jet|\bd-atud\b|jet_engine|turboprop/i,

@@ -2,12 +2,12 @@
   {
     "name": "Haribo Quaxi",
     "brand": "Haribo",
-    "image_url": null,
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/900/297/547/2814/front_bg.16.400.jpg",
+    "kcal_100g": 348,
+    "sugar_100g": 53,
+    "fat_100g": 0.5,
+    "ingredients_short": "глюкозен сироп, захар, декстроза, лимонена киселина",
+    "source_code": "9002975472814"
   },
   {
     "name": "Chio Tortilla Chips Hot Chili",
@@ -72,12 +72,12 @@
   {
     "name": "Kinder Riegel",
     "brand": "Ferrero",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/KinderSchokolade.jpg?width=600",
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/400/840/022/1021/front_en.180.400.jpg",
+    "kcal_100g": 566,
+    "sugar_100g": 53.3,
+    "fat_100g": 35,
+    "ingredients_short": "VOLLMILCHSCHOKOLADE 40 % (Zucker, VOLLMILCHPULVER, Kakaobutter, Kakaomasse",
+    "source_code": "4008400221021"
   },
   {
     "name": "Kinder Joy",
@@ -192,12 +192,12 @@
   {
     "name": "Chio Chips Red Paprika",
     "brand": "Chio",
-    "image_url": "https://upload.wikimedia.org/wikipedia/de/thumb/4/47/Intersnack_logo.svg/600px-Intersnack_logo.svg.png",
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
+    "image_url": "https://images.openfoodfacts.org/images/products/400/124/200/0601/front_de.6.400.jpg",
+    "kcal_100g": 534,
+    "sugar_100g": 2.8,
+    "fat_100g": 33,
     "ingredients_short": null,
-    "source_code": null
+    "source_code": "4001242000601"
   },
   {
     "name": "DeBeukelaer Tourinos",
@@ -212,12 +212,12 @@
   {
     "name": "Haribo Mega-Roulette",
     "brand": "Haribo",
-    "image_url": null,
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
+    "image_url": "https://images.openfoodfacts.org/images/products/400/168/638/3612/front_pl.7.400.jpg",
+    "kcal_100g": 343,
+    "sugar_100g": 46,
+    "fat_100g": 0.5,
     "ingredients_short": null,
-    "source_code": null
+    "source_code": "4001686383612"
   },
   {
     "name": "funny-frisch Chipsfrisch Ungarisch",
@@ -702,7 +702,7 @@
   {
     "name": "Haribo Schlümpfe",
     "brand": "Haribo",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Harikalar_Diyari_Smurfs_06048_nevit.jpg?width=600",
+    "image_url": null,
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -772,12 +772,12 @@
   {
     "name": "Nimm2 Classic",
     "brand": "Storck",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nimm2_candy.jpg?width=600",
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/401/440/091/7789/front_en.23.400.jpg",
+    "kcal_100g": 374,
+    "sugar_100g": 58.8,
+    "fat_100g": 3.4,
+    "ingredients_short": "Zucker, Glukosesirup, Glukose-Fruktose-Sirup, Feuchthaltemittel Sorbitsirup",
+    "source_code": "4014400917789"
   },
   {
     "name": "Aldi Nussknacker",
@@ -852,12 +852,12 @@
   {
     "name": "Twix",
     "brand": "Mars",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Twix-broken.jpg?width=600",
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/500/015/955/7702/front_en.9.400.jpg",
+    "kcal_100g": 493,
+    "sugar_100g": 48,
+    "fat_100g": 24,
+    "ingredients_short": "Zucker, Glukosesirup, Weizenm fever, Salz",
+    "source_code": "5000159557702"
   },
   {
     "name": "Werther's Original",
