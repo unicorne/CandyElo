@@ -33,6 +33,16 @@ type FloatingDelta = {
   delta: number;
 };
 
+function VsChip() {
+  return (
+    <div className="flex items-center justify-center self-center">
+      <div className="size-10 sm:size-12 rounded-full bg-foreground text-background flex items-center justify-center text-xs sm:text-sm font-bold shadow-md select-none">
+        VS
+      </div>
+    </div>
+  );
+}
+
 export default function VoteClient() {
   const [pair, setPair] = useState<PairResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -153,8 +163,8 @@ export default function VoteClient() {
         setVoteCount((c) => c + 1);
         setStreak((s) => s + 1);
         popFloat(side === "a" ? "left" : "right", delta);
-        // brief celebratory pause before swapping
-        await new Promise((r) => setTimeout(r, 350));
+        // short celebratory pause before swapping
+        await new Promise((r) => setTimeout(r, 220));
         await loadNext({ a: loser.id });
       } else {
         setStreak(0);
@@ -233,80 +243,83 @@ export default function VoteClient() {
           Was magst du <span className="text-primary">lieber?</span>
         </h1>
 
+        {/* Stable card grid — never reflows. Cards always sit in cols [card | VS | card]. */}
         <div className="w-full max-w-3xl relative">
-          <AnimatePresence mode="wait">
-            {loading || !pair ? (
-              <motion.div
-                key="loading"
-                className="flex gap-3 sm:gap-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <CandyCardSkeleton />
-                <CandyCardSkeleton />
-              </motion.div>
-            ) : error ? (
-              <motion.div
-                key="error"
-                className="text-center space-y-3 py-8"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-              >
+          <div
+            className="
+              grid grid-cols-[1fr_auto_1fr] gap-2 sm:gap-4 items-stretch
+              min-h-[260px] sm:min-h-[360px] relative
+            "
+          >
+            {error ? (
+              <div className="col-span-3 text-center space-y-3 py-8">
                 <p className="text-destructive">{error}</p>
                 <Button onClick={() => loadNext()}>Nochmal versuchen</Button>
-              </motion.div>
+              </div>
+            ) : loading || !pair ? (
+              <>
+                <CandyCardSkeleton />
+                <VsChip />
+                <CandyCardSkeleton />
+              </>
             ) : (
-              <motion.div
-                key={`${pair.a.id}-${pair.b.id}`}
-                className="flex gap-3 sm:gap-6 items-stretch relative"
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.2 }}
-              >
-                <CandyCard
-                  candy={pair.a}
-                  side="left"
-                  picked={picked === "a"}
-                  dimmed={picked === "b"}
-                  disabled={submitting || picked !== null}
-                  onPick={() => handlePick("a")}
-                />
-                <div className="flex items-center justify-center self-center">
-                  <div className="size-10 sm:size-12 rounded-full bg-foreground text-background flex items-center justify-center text-xs sm:text-sm font-bold shadow-md select-none">
-                    VS
-                  </div>
-                </div>
-                <CandyCard
-                  candy={pair.b}
-                  side="right"
-                  picked={picked === "b"}
-                  dimmed={picked === "a"}
-                  disabled={submitting || picked !== null}
-                  onPick={() => handlePick("b")}
-                />
-
-                {/* Floating ELO deltas */}
-                <AnimatePresence>
-                  {floats.map((f) => (
-                    <motion.div
-                      key={f.id}
-                      initial={{ opacity: 0, y: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, y: -50, scale: 1 }}
-                      exit={{ opacity: 0, y: -90, scale: 0.9 }}
-                      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                      className={`absolute top-1/2 -translate-y-1/2 ${
-                        f.side === "left" ? "left-[12%]" : "right-[12%]"
-                      } z-10 pointer-events-none text-2xl sm:text-3xl font-black text-primary drop-shadow`}
-                    >
-                      +{f.delta.toFixed(0)}
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </motion.div>
+              <AnimatePresence mode="popLayout" initial={false}>
+                <motion.div
+                  key={`a-${pair.a.id}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.18 }}
+                  className="min-w-0"
+                >
+                  <CandyCard
+                    candy={pair.a}
+                    picked={picked === "a"}
+                    dimmed={picked === "b"}
+                    disabled={submitting || picked !== null}
+                    onPick={() => handlePick("a")}
+                  />
+                </motion.div>
+                <VsChip key="vs" />
+                <motion.div
+                  key={`b-${pair.b.id}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.18 }}
+                  className="min-w-0"
+                >
+                  <CandyCard
+                    candy={pair.b}
+                    picked={picked === "b"}
+                    dimmed={picked === "a"}
+                    disabled={submitting || picked !== null}
+                    onPick={() => handlePick("b")}
+                  />
+                </motion.div>
+              </AnimatePresence>
             )}
-          </AnimatePresence>
+
+            {/* Floating ELO deltas — absolutely positioned, no layout impact */}
+            <div className="pointer-events-none absolute inset-0">
+              <AnimatePresence>
+                {floats.map((f) => (
+                  <motion.div
+                    key={f.id}
+                    initial={{ opacity: 0, y: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, y: -60, scale: 1 }}
+                    exit={{ opacity: 0, y: -100, scale: 0.9 }}
+                    transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                    className={`absolute top-1/2 -translate-y-1/2 ${
+                      f.side === "left" ? "left-[18%]" : "right-[18%]"
+                    } text-2xl sm:text-3xl font-black text-primary drop-shadow-md`}
+                  >
+                    +{f.delta.toFixed(0)}
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
 
         <Button

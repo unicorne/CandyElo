@@ -24,7 +24,6 @@ type Props = {
   disabled?: boolean;
   picked?: boolean;
   dimmed?: boolean;
-  side: "left" | "right";
 };
 
 export function CandyCard({
@@ -33,7 +32,6 @@ export function CandyCard({
   disabled,
   picked,
   dimmed,
-  side,
 }: Props) {
   const [open, setOpen] = useState(false);
 
@@ -42,16 +40,11 @@ export function CandyCard({
 
   return (
     <motion.div
-      layout
-      initial={{ opacity: 0, x: side === "left" ? -24 : 24 }}
-      animate={{
-        opacity: dimmed ? 0.35 : 1,
-        x: 0,
-        scale: picked ? 1.04 : dimmed ? 0.96 : 1,
-      }}
-      exit={{ opacity: 0, scale: 0.92 }}
-      transition={{ type: "spring", stiffness: 240, damping: 22 }}
-      className="flex-1 min-w-0"
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: dimmed ? 0.4 : 1, y: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+      className="min-w-0 w-full"
     >
       <Card
         role="button"
@@ -68,13 +61,13 @@ export function CandyCard({
         className={`
           relative overflow-hidden cursor-pointer select-none
           h-full p-3 sm:p-4 flex flex-col gap-3
-          transition-all duration-150
-          ${disabled ? "pointer-events-none" : "hover:scale-[1.02] active:scale-[0.98]"}
-          ${picked ? "ring-2 ring-primary shadow-2xl shadow-primary/40 bg-primary/5" : ""}
+          transition-shadow duration-150
+          ${disabled ? "pointer-events-none" : "active:brightness-95"}
+          ${picked ? "ring-2 ring-primary shadow-xl shadow-primary/30 bg-primary/5" : "hover:shadow-md"}
         `}
       >
         {picked && (
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-accent/10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 pointer-events-none" />
         )}
 
         <div className="relative w-full aspect-square bg-muted/40 rounded-lg overflow-hidden">
