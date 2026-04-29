@@ -2,12 +2,12 @@
   {
     "name": "Haribo Quaxi",
     "brand": "Haribo",
-    "image_url": "https://images.openfoodfacts.org/images/products/900/297/547/2814/front_bg.16.400.jpg",
-    "kcal_100g": 348,
-    "sugar_100g": 53,
-    "fat_100g": 0.5,
-    "ingredients_short": "глюкозен сироп, захар, декстроза, лимонена киселина",
-    "source_code": "9002975472814"
+    "image_url": null,
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Chio Tortilla Chips Hot Chili",
@@ -32,22 +32,22 @@
   {
     "name": "Haribo Maoam Stripes",
     "brand": "Haribo",
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Logo_MAOAM.svg/600px-Logo_MAOAM.svg.png",
+    "image_url": "https://images.openfoodfacts.org/images/products/000/004/207/5622/front_de.6.400.jpg",
+    "kcal_100g": 394,
+    "sugar_100g": 60,
+    "fat_100g": 6.4,
+    "ingredients_short": "Zucker, Glukosesirup, Sorbitsirup, Gelatine",
+    "source_code": "42075622"
+  },
+  {
+    "name": "Kinder Country",
+    "brand": "Ferrero",
+    "image_url": "https://upload.wikimedia.org/wikipedia/de/thumb/4/4b/Kinder_Country_Logo.jpg/600px-Kinder_Country_Logo.jpg",
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
     "ingredients_short": null,
     "source_code": null
-  },
-  {
-    "name": "Kinder Country",
-    "brand": "Ferrero",
-    "image_url": "https://images.openfoodfacts.org/images/products/400/840/026/1522/front_fr.123.400.jpg",
-    "kcal_100g": 561,
-    "sugar_100g": 49.1,
-    "fat_100g": 33.8,
-    "ingredients_short": "Chocolat supérieur au lait 33, 5% (sucre, beurre de cacao, lait en poudre",
-    "source_code": "4008400261522"
   },
   {
     "name": "Duplo",
@@ -62,12 +62,12 @@
   {
     "name": "Kinder Überraschungsei",
     "brand": "Ferrero",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kinder_Surprise_Egg.jpg?width=600",
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/400/840/023/0726/front_de.47.400.jpg",
+    "kcal_100g": 579,
+    "sugar_100g": 53.6,
+    "fat_100g": 36.2,
+    "ingredients_short": "_VOLLMILCHSCHOKOLADE_ 45 % (Zucker, _VOLLMILCHPULVER_, Kakaobutter, Kakaomasse",
+    "source_code": "4008400230726"
   },
   {
     "name": "Kinder Riegel",
@@ -162,12 +162,12 @@
   {
     "name": "Haribo Lakritz Schnecken",
     "brand": "Haribo",
-    "image_url": null,
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/400/168/610/1148/front_de.71.400.jpg",
+    "kcal_100g": 317,
+    "sugar_100g": 47,
+    "fat_100g": 0.7,
+    "ingredients_short": "Brauner Zuckersirup, _Weizenmehl_, Glukosesirup, Stärke",
+    "source_code": "4001686101148"
   },
   {
     "name": "Niederegger Marzipan",
@@ -182,12 +182,12 @@
   {
     "name": "Trolli Saure Glühwürmchen",
     "brand": "Trolli",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Trolli_Dinorex-5869.jpg?width=600",
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/400/051/244/6309/front_fr.10.400.jpg",
+    "kcal_100g": 335,
+    "sugar_100g": 46,
+    "fat_100g": 0,
+    "ingredients_short": "sirop de glucose, sucre, amidon modifié, gélatine",
+    "source_code": "4000512446309"
   },
   {
     "name": "Chio Chips Red Paprika",
@@ -222,12 +222,12 @@
   {
     "name": "funny-frisch Chipsfrisch Ungarisch",
     "brand": "funny-frisch",
-    "image_url": "https://upload.wikimedia.org/wikipedia/de/thumb/4/47/Intersnack_logo.svg/600px-Intersnack_logo.svg.png",
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/400/358/610/1358/front_de.7.400.jpg",
+    "kcal_100g": 533,
+    "sugar_100g": 2.5,
+    "fat_100g": 33,
+    "ingredients_short": "Kartoffeln, pflanzliche Öle (Sonnenblume, Raps in veränderlichen Gewichtsanteilen), Speisesalz",
+    "source_code": "4003586101358"
   },
   {
     "name": "funny-frisch Kessel Chips",
@@ -282,12 +282,12 @@
   {
     "name": "Ferrero Rocher",
     "brand": "Ferrero",
-    "image_url": "https://images.openfoodfacts.org/images/products/800/050/027/3296/front_en.10.400.jpg",
-    "kcal_100g": 603,
-    "sugar_100g": 39.9,
-    "fat_100g": 42.7,
-    "ingredients_short": "Chocolat au LAIT 30% (sucre, beurre de cacao, pâte de cacao, LAIT écrémé en poudre",
-    "source_code": "8000500273296"
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/2023_Ferrero_Rocher_(3).jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Wrigley's Spearmint",
@@ -302,12 +302,12 @@
   {
     "name": "Wrigley's Extra Professional Mints",
     "brand": "Wrigley's",
-    "image_url": "https://images.openfoodfacts.org/images/products/400/990/049/9927/front_de.4.400.jpg",
-    "kcal_100g": 241,
-    "sugar_100g": 0,
-    "fat_100g": 0.9,
-    "ingredients_short": "SÜSSUNGSMITTEL SORBIT, ISOMALT, SÄUERUNGSMITTEL CITRONENSÄURE, APFELSÄURE TRENNMITTEL E470b",
-    "source_code": "4009900499927"
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wrigley_Building_-_Chicago%2C_Illinois.JPG?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Storck Ice Fresh",
@@ -362,12 +362,12 @@
   {
     "name": "Nestlé Smarties",
     "brand": "Nestlé",
-    "image_url": "https://images.openfoodfacts.org/images/products/000/004/239/5034/front_fr.88.400.jpg",
-    "kcal_100g": 470,
-    "sugar_100g": 59.8,
-    "fat_100g": 18.7,
-    "ingredients_short": "Sucre, LAIT écrémé en poudre, pâte de cacao¹, beurre de cacao¹",
-    "source_code": "42395034"
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Smarties-UK-Candies.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Chupa Chups Crazy Dips",
@@ -412,22 +412,22 @@
   {
     "name": "Hanuta",
     "brand": "Ferrero",
-    "image_url": "https://images.openfoodfacts.org/images/products/800/050/027/2442/front_de.114.400.jpg",
-    "kcal_100g": 542,
-    "sugar_100g": 42.7,
-    "fat_100g": 31.9,
-    "ingredients_short": "Zucker, pflanzliche Fette (Palm, Shea), _Weizenmehl_ (13",
-    "source_code": "8000500272442"
-  },
-  {
-    "name": "Kinder Schoko-Bons",
-    "brand": "Ferrero",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kinder_Schokobon.jpg?width=600",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hanuta_11-2015.jpg?width=600",
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
     "ingredients_short": null,
     "source_code": null
+  },
+  {
+    "name": "Kinder Schoko-Bons",
+    "brand": "Ferrero",
+    "image_url": "https://images.openfoodfacts.org/images/products/800/050/024/2612/front_en.84.400.jpg",
+    "kcal_100g": 576,
+    "sugar_100g": 52.2,
+    "fat_100g": 36.6,
+    "ingredients_short": "Chocolat supérieur au LAIT 50% (sucre, LAIT en poudre, beurre de cacao, pâte de cacao",
+    "source_code": "8000500242612"
   },
   {
     "name": "Kinder Happy Hippo Cacao",
@@ -442,12 +442,12 @@
   {
     "name": "Kit Kat",
     "brand": "Nestlé",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kit-Kat-Split.jpg?width=600",
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/844/529/072/8791/front_de.103.400.jpg",
+    "kcal_100g": 420,
+    "sugar_100g": 24.7,
+    "fat_100g": 10.9,
+    "ingredients_short": "31, 4% VOLLKORNWEIZENMEHL, Maisgrieß, Zucker",
+    "source_code": "8445290728791"
   },
   {
     "name": "Leibniz Butterkeks",
@@ -542,12 +542,12 @@
   {
     "name": "Tic Tac Fresh Mint",
     "brand": "Ferrero",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/2024_Tic_Tac_(4).jpg?width=600",
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/800/050/015/3383/front_en.64.400.jpg",
+    "kcal_100g": 397,
+    "sugar_100g": 94.5,
+    "fat_100g": 0.5,
+    "ingredients_short": "Zucker, Maltodextrin, Fruchtzucker, Verdickungsmittel Gummi arabicum",
+    "source_code": "8000500153383"
   },
   {
     "name": "Tic Tac Fresh Orange",
@@ -562,12 +562,12 @@
   {
     "name": "Haribo Goldbären",
     "brand": "Haribo",
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Haribo_gb.jpg/960px-Haribo_gb.jpg",
-    "kcal_100g": null,
-    "sugar_100g": null,
-    "fat_100g": null,
-    "ingredients_short": null,
-    "source_code": null
+    "image_url": "https://images.openfoodfacts.org/images/products/869/121/602/0627/front_fr.22.400.jpg",
+    "kcal_100g": 330,
+    "sugar_100g": 47.3,
+    "fat_100g": 0.1,
+    "ingredients_short": "sirop de glucose, sucre, gélatine halal bovine, dextrose",
+    "source_code": "8691216020627"
   },
   {
     "name": "Haribo Color-Rado",
@@ -672,12 +672,12 @@
   {
     "name": "Esspapier",
     "brand": "Esspapier",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bad_Ischler_Oblaten.jpg?width=600",
+    "image_url": "https://images.openfoodfacts.org/images/products/438/884/416/0446/front_de.3.400.jpg",
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
     "ingredients_short": null,
-    "source_code": null
+    "source_code": "4388844160446"
   },
   {
     "name": "Geleebananen",
@@ -702,7 +702,7 @@
   {
     "name": "Haribo Schlümpfe",
     "brand": "Haribo",
-    "image_url": null,
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Schlumpfstatue_in_Bruessel.jpg?width=600",
     "kcal_100g": null,
     "sugar_100g": null,
     "fat_100g": null,
@@ -762,12 +762,12 @@
   {
     "name": "Mon Chéri",
     "brand": "Ferrero",
-    "image_url": "https://images.openfoodfacts.org/images/products/800/050/003/4743/front_fr.224.400.jpg",
-    "kcal_100g": 455,
-    "sugar_100g": 48.3,
-    "fat_100g": 20.3,
-    "ingredients_short": "Halbbitterschokolade 49% (Zucker, Kakaomasse, Kakaobutter, Emulgator Lecithine (SOJA)",
-    "source_code": "8000500034743"
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/MonCheri.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Nimm2 Classic",
@@ -872,12 +872,12 @@
   {
     "name": "Yogurette",
     "brand": "Ferrero",
-    "image_url": "https://images.openfoodfacts.org/images/products/000/004/008/4527/front_de.103.400.jpg",
-    "kcal_100g": 576,
-    "sugar_100g": 55.2,
-    "fat_100g": 36,
-    "ingredients_short": "MAGERMILCHJOGHURT - Erdbeer-Creme 49, 5 % (Zucker, Palmöl, Traubenzucker",
-    "source_code": "40084527"
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Yogurette.jpg?width=600",
+    "kcal_100g": null,
+    "sugar_100g": null,
+    "fat_100g": null,
+    "ingredients_short": null,
+    "source_code": null
   },
   {
     "name": "Nesquik",

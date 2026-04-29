@@ -75,17 +75,24 @@ function productName(p: OffProduct): string {
   );
 }
 
+// Each entry of `nameMust` is one required *concept*. Use "|" inside a single
+// entry to list alternative spellings ("schlümpf|schluempf|smurf"), and
+// separate entries to list multiple required concepts ("mars", "mini").
+function tokenMatches(name: string, token: string): boolean {
+  return token
+    .split("|")
+    .map((alt) => normalize(alt))
+    .filter(Boolean)
+    .some((alt) => name.includes(alt));
+}
+
 function isHighConfidenceMatch(seed: SeedCandy, p: OffProduct): boolean {
-  // Brand and name match are non-negotiable.
   const brands = normalize(p.brands);
   const brandKey = normalize(seed.brand);
   if (!brands.includes(brandKey) && !brandKey.includes(brands)) return false;
   const name = productName(p);
-  const must = seed.nameMust.map(normalize);
-  if (!must.every((token) => name.includes(token))) return false;
-
-  // kcal sanity: when present, must be in candy band. When missing entirely,
-  // accept the match (lots of OFF entries have an image but no nutrition).
+  if (!seed.nameMust.every((token) => tokenMatches(name, token))) return false;
+  // kcal sanity: when present, must be in candy band. Missing kcal is OK.
   const kcal = num(p.nutriments?.["energy-kcal_100g"]);
   if (kcal != null && (kcal < 150 || kcal > 700)) return false;
   return true;
