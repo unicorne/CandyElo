@@ -236,7 +236,19 @@ async function main() {
     } catch {
       products = [];
     }
-    const picked = pick(seed, products);
+    // When the seed has a barcode and OFF returned that exact product, trust
+    // it: the user has manually verified the EAN points at the right item, so
+    // skip the brand+name matcher (some OFF entries have garbage brand fields).
+    let picked: OffProduct | null = null;
+    if (
+      seed.barcode &&
+      products.length === 1 &&
+      products[0].code === seed.barcode
+    ) {
+      picked = products[0];
+    } else {
+      picked = pick(seed, products);
+    }
     if (picked) {
       const updated = applyMatch(seed, cached, picked);
       byName.set(seed.name, updated);

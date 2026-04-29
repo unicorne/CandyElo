@@ -17,9 +17,9 @@ export type SeedCandy = {
 };
 
 export const CANDY_LIST: SeedCandy[] = [
-  { name: "Haribo Quaxi", brand: "Haribo", query: "Haribo Quaxi", nameMust: ["quaxi"], wikiTitle: "Haribo" },
+  { name: "Haribo Quaxi", brand: "Haribo", query: "Haribo Quaxi", barcode: "9002975472814", nameMust: ["quaxi"], wikiTitle: "Haribo" },
   { name: "Chio Tortilla Chips Hot Chili", brand: "Chio", query: "Chio Tortilla Hot Chili", nameMust: ["tortilla", "chili"], wikiTitle: "Chio_Chips" },
-  { name: "Center Shock Mystery", brand: "Storck", query: "Center Shock Mystery", nameMust: ["center", "shock"], wikiTitle: "Center_Shock" },
+  { name: "Center Shock Mystery", brand: "Storck", query: "Center Shock Mystery", barcode: "80801320", nameMust: ["center", "shock"], wikiTitle: "Center_Shock" },
   { name: "Haribo Maoam Stripes", brand: "Haribo", query: "Maoam Stripes", nameMust: ["maoam", "stripes"], wikiTitle: "Maoam" },
   { name: "Kinder Country", brand: "Ferrero", query: "Kinder Country", nameMust: ["country"], wikiTitle: "Kinder_Country" },
   { name: "Duplo", brand: "Ferrero", query: "Duplo Ferrero", nameMust: ["duplo"], wikiTitle: "Duplo_(Süßware)" },
@@ -42,7 +42,6 @@ export const CANDY_LIST: SeedCandy[] = [
   { name: "funny-frisch Chipsfrisch Ungarisch", brand: "funny-frisch", query: "funny frisch Chipsfrisch Ungarisch", nameMust: ["ungarisch"], wikiTitle: "Funny-frisch" },
   { name: "funny-frisch Kessel Chips", brand: "funny-frisch", query: "funny frisch Kessel Chips", nameMust: ["kessel"], wikiTitle: "Funny-frisch" },
   { name: "Original Sahne Muh-Muhs", brand: "Storck", query: "Sahne Muh-Muhs Storck", nameMust: ["muh"], wikiTitle: "August_Storck" },
-  { name: "Funny Crazy Spray", brand: "Funny Candy", query: "Crazy Spray candy", nameMust: ["crazy", "spray"] },
   { name: "Ültje Erdnüsse gesalzen", brand: "Ültje", query: "Ültje Erdnüsse", nameMust: ["ültje", "ueltje"], wikiTitle: "Ültje" },
   { name: "Ferrero Giotto", brand: "Ferrero", query: "Ferrero Giotto", nameMust: ["giotto"], wikiTitle: "Giotto_(Süßware)" },
   { name: "Ferrero Rocher", brand: "Ferrero", query: "Ferrero Rocher", nameMust: ["rocher"], wikiTitle: "Ferrero_Rocher" },
@@ -85,7 +84,7 @@ export const CANDY_LIST: SeedCandy[] = [
   { name: "Edle Tropfen in Nuss", brand: "Trumpf", query: "Edle Tropfen in Nuss Trumpf", nameMust: ["edle", "tropfen"], wikiTitle: "Trumpf_Schokolade" },
   { name: "Erfrischungsstäbchen", brand: "Erfrischungsstäbchen", query: "Erfrischungsstäbchen", nameMust: ["erfrischungsstäb|erfrischungsstaeb"], wikiTitle: "Erfrischungsstäbchen" },
   { name: "Esspapier", brand: "Esspapier", query: "Esspapier", nameMust: ["esspapier|ess-papier|ess papier"], wikiTitle: "Esspapier" },
-  { name: "Geleebananen", brand: "Geleebananen", query: "Geleebananen", nameMust: ["geleebanan|gelee-banan|gelee banan|bananen-gelee"], wikiTitle: "Bananenschokolade" },
+  { name: "Geleebananen", brand: "Choceur", query: "Schoko Gelee Bananen Choceur", barcode: "4068706054594", nameMust: ["gelee|geleebanan|banan"], wikiTitle: "Bananenschokolade" },
   { name: "Haribo Phantasia", brand: "Haribo", query: "Haribo Phantasia", nameMust: ["phantasia"], wikiTitle: "Haribo" },
   { name: "Haribo Schlümpfe", brand: "Haribo", query: "Haribo Schlümpfe", nameMust: ["schlümpf|schluempf|smurf"], wikiTitle: "Haribo" },
   { name: "Katjes Yoghurt-Gums", brand: "Katjes", query: "Katjes Yoghurt Gums", nameMust: ["yoghurt", "joghurt"], wikiTitle: "Katjes", imageOverride: "https://commons.wikimedia.org/wiki/Special:FilePath/Katjes_Joghurt-Gums_(0877).jpg?width=600" },
