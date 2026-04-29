@@ -22,29 +22,23 @@ type Props = {
   >;
   onPick: () => void;
   disabled?: boolean;
-  picked?: boolean;
-  dimmed?: boolean;
+  side: "left" | "right";
 };
 
-export function CandyCard({
-  candy,
-  onPick,
-  disabled,
-  picked,
-  dimmed,
-}: Props) {
+export function CandyCard({ candy, onPick, disabled, side }: Props) {
   const [open, setOpen] = useState(false);
 
   const fmt = (n: number | null) =>
     n == null ? "—" : Math.round(n).toString();
 
   return (
-    <div
-      className="min-w-0 w-full h-full"
-      style={{
-        opacity: dimmed ? 0.4 : 1,
-        transition: "opacity 140ms ease-out",
-      }}
+    <motion.div
+      layout
+      initial={{ opacity: 0, x: side === "left" ? -24 : 24 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, scale: 0.92 }}
+      transition={{ type: "spring", stiffness: 220, damping: 22 }}
+      className="flex-1 min-w-0"
     >
       <Card
         role="button"
@@ -59,17 +53,12 @@ export function CandyCard({
           }
         }}
         className={`
-          relative overflow-hidden cursor-pointer select-none
+          group relative overflow-hidden cursor-pointer select-none
           h-full p-3 sm:p-4 flex flex-col gap-3
-          transition-[box-shadow,background-color] duration-150
-          ${disabled ? "pointer-events-none" : "active:brightness-95"}
-          ${picked ? "ring-4 ring-primary shadow-2xl shadow-primary/40 bg-primary/10" : "ring-1 ring-border hover:shadow-md"}
+          transition-all duration-150
+          ${disabled ? "pointer-events-none opacity-60" : "hover:scale-[1.02] active:scale-[0.98]"}
         `}
       >
-        {picked && (
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-accent/10 pointer-events-none" />
-        )}
-
         <div className="relative w-full aspect-square bg-muted/40 rounded-lg overflow-hidden">
           {candy.image_url ? (
             <Image
@@ -86,7 +75,7 @@ export function CandyCard({
           )}
         </div>
 
-        <div className="flex flex-col gap-1 min-w-0 relative">
+        <div className="flex flex-col gap-1 min-w-0">
           <div className="font-semibold text-base sm:text-lg leading-tight line-clamp-2">
             {candy.name}
           </div>
@@ -106,16 +95,12 @@ export function CandyCard({
           className="
             mt-auto flex items-center justify-between gap-1
             text-xs text-muted-foreground hover:text-foreground
-            border-t pt-2 relative
+            border-t pt-2
           "
           aria-expanded={open}
         >
           <span>Nährwerte / 100g</span>
-          {open ? (
-            <ChevronUp className="size-3.5" />
-          ) : (
-            <ChevronDown className="size-3.5" />
-          )}
+          {open ? <ChevronUp className="size-3.5" /> : <ChevronDown className="size-3.5" />}
         </button>
 
         {open && (
@@ -123,7 +108,7 @@ export function CandyCard({
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             transition={{ duration: 0.18 }}
-            className="grid grid-cols-3 gap-1 text-center text-xs relative"
+            className="grid grid-cols-3 gap-1 text-center text-xs"
             onClick={(e) => e.stopPropagation()}
           >
             <Stat label="kcal" value={fmt(candy.kcal_100g)} />
@@ -137,7 +122,7 @@ export function CandyCard({
           </motion.div>
         )}
       </Card>
-    </div>
+    </motion.div>
   );
 }
 
